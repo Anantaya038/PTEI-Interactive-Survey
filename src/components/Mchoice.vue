@@ -29,13 +29,14 @@ export default {
   methods: {
     getselected: function(value, boolean) {
         var data = [value, boolean];
-        this.mchoice.push(data);
-        for (var i = 0; i < this.mchoice.length; i++) {
-          if (this.mchoice[i][1] === true ) {
-            this.mchoice.splice(this.mchoice.indexOf(this.mchoice[i][0]), 1);
-      }}// incorrect logic
-      console.log(this.mchoice);
-      console.log(this.mchoice.length)
+    this.mchoice.push(data);
+      for (var i = 0; i < this.mchoice.length; i++) {
+        if (this.mchoice[i][1] === true ) {
+          this.mchoice.splice(this.mchoice.indexOf(this.mchoice[i][0]), 1);
+    }  
+    }// incorrect logic
+    console.log(this.mchoice);
+    console.log(this.mchoice.length)
     }
   },
   components: {}

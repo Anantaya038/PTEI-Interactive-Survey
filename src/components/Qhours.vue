@@ -3,7 +3,7 @@
     <h3>{{surveys.qid}}. {{surveys.qname}}</h3>
     <hr>
     <div class="row">
-    <b-col class="col-6" v-for="ans in surveys.ans.slice(0, 6)" v-bind:key="ans.ansname">
+    <b-col class="col-6" v-for="ans in surveys.ans.slice(0, 18)" v-bind:key="ans.ansname">
         <b-form-checkbox v-model="ans.selected" >
                 <h4>{{ans.ansname}}</h4>
         </b-form-checkbox> 
