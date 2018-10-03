@@ -1,27 +1,30 @@
 <template>
-    <div style="margin: 1% 1% 2% 4%; min-height: 5vh;  max-height: 60vh;">
+    <div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
         <h2>{{surveys.qid}}. {{surveys.qname}}</h2>
         <div class="row">  
             <h2>Answer :</h2> 
             <b-col sm="8">
-                <b-form-input v-model="textinput" @change="edit(textinput)" id="input-large" size="lg" type="text" placeholder="Enter your answer"></b-form-input>
+                <b-form-input v-bind:value.sync="answer" v-model="answer" @change="edit(answer)" @input="$emit('update:answer', $event.target.value)" id="input-large" size="lg" type="text" placeholder="Enter your answer"></b-form-input>
             </b-col>
         </div>
     </div>
 </template>
 <script>
 export default {
-  props: ["surveys"],
+  props: ["surveys", "answer"],
   name: "qtextinput",
   data() {
     return {
-      textinput: ""
+      answers: [{
+        qid : this.surveys.qid,
+
+      }]
     };
   },
   created() {},
   methods: {
     edit: function(data) {
-      console.log(data);
+        console.log(data);
     }
   }
 };

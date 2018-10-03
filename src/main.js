@@ -6,8 +6,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import router from './router'
 import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+import VueCarousel from 'vue-carousel';
 
-
+Vue.use(VueCarousel);
 Vue.use(VueFormWizard)
 Vue.use(BootstrapVue);
 Vue.config.productionTip = false

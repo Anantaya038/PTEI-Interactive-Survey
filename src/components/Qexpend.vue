@@ -1,5 +1,5 @@
 <template>
-<div style="margin: 1% 0% 3% 5%; min-height: 5vh;  max-height: 60vh;">
+<div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
     <h2>{{surveys.qid}}. {{surveys.qname}}</h2>
     <hr>
      <div class="col-sm-6" v-for="ans in surveys.ans" v-bind:key="ans.ansname"><h3>{{ans.ansname}}</h3></div>

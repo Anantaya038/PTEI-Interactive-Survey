@@ -1,17 +1,18 @@
 <template>
-<div style="margin: 1% 1% 1% 1%; min-height: 5vh;  max-height:70vh;">
-       <h5>{{surveys.qid}}. {{surveys.qname}}</h5>
-       <div class="h3" v-for="ans in surveys.ans" v-bind:key="ans.ansname"><h4>{{ans.ansname}}</h4></div>
-       <h5>{{ surveys.titleE }}</h5>
+<div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
+
+<h6>{{surveys.qtitle}}</h6>
+<h5>{{surveys.qid}}. {{surveys.qname}}</h5>
+       <h6>{{ surveys.titleE }}</h6>
         <div class="row">
-            <div class="col" v-for="imgExpect in surveys.imgExpect" v-bind:key="imgExpect.optionE"><b-img rounded="circle" :src="imgExpect.urlE" class="img-body"></b-img></div>
+            <div class="col" v-on:click="clickans(imgExpect.optionE)" v-for="imgExpect in surveys.imgExpect" v-bind:key="imgExpect.optionE"><b-img rounded="circle" :src="imgExpect.urlE" class="img-body"></b-img></div>
         </div>
         <div class="row">
             <div class="col" v-for="imgExpect in surveys.imgExpect" v-bind:key="imgExpect.optionE"><p>{{imgExpect.optionE}}</p></div>
         </div>
-        <h5>{{ surveys.titleS }}</h5>
+        <h6>{{ surveys.titleS }}</h6>
         <div class="row">
-            <div class="col" v-for="imgSatis in surveys.imgSatis" v-bind:key="imgSatis.optionS"><b-img rounded="circle" :src="imgSatis.urlS" class="img-body"></b-img></div>
+            <div class="col"  v-on:click="clickansS(imgSatis.optionS)" v-for="imgSatis in surveys.imgSatis" v-bind:key="imgSatis.optionS"><b-img rounded="circle" :src="imgSatis.urlS" class="img-body"></b-img></div>
         </div>
         <div class="row">
             <div class="col" v-for="imgSatis in surveys.imgSatis" v-bind:key="imgSatis.optionS"><p>{{imgSatis.optionS}}</p></div>
@@ -24,9 +25,23 @@ export default {
   props: ["surveys"],
   name: "qexpect",
   data() {
-    return {};
+    return {
+      ansDefault: ''
+    };
   },
-  created() {}
+  created() {},
+  methods:{
+      clickans(ans) {
+      // this.$emit(ans, yesnoanswer);
+      this.ansDefault = [];
+      this.ansDefault.push(ans);
+      console.log(this.ansDefault);
+    },
+    edit: function(data) {
+      this.ansDefault.push(data);
+      console.log(this.ansDefault);
+    }
+  },
 };
 </script>
 
@@ -37,17 +52,14 @@ export default {
   box-shadow: 0 0 10px #000000;
 }
 .col {
-  margin-top: 12px;
+  margin-top: 2vh;
   text-align: center;
 }
-.h3 {
+h5 {
   color: rgb(85, 53, 4);
-  margin-top: 3vh;
+  margin-top: 1vh;
   text-align: justify;
   text-indent: 45px;
 }
-.hr {
-  border-top: 10px solid rgba(0, 0, 0, 0.1);
-  size: 6;
-}
+
 </style>

@@ -1,10 +1,10 @@
 <template>
-<div style="margin: 1% 1% 1% 1%; min-height: 5vh;  max-height:75vh;">
-       <h3>{{surveys.qid}}. {{surveys.qname}}</h3>
-       <div class="h2"><h3>{{surveys.ans[0].ansname}}</h3></div>
+<div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
+       <h1>{{surveys.qtitle}}</h1>       
        <hr>
+       <h2>{{surveys.qid}} ) {{surveys.qname}}</h2>   
         <div class="row">
-            <div class="col" v-for="imgAgree in surveys.imgAgree" v-bind:key="imgAgree.optionA"><b-img rounded="circle" :src="imgAgree.urlA" class="img-body"></b-img></div>
+            <div class="col" v-on:click="clickans(imgAgree.optionA)" v-for="imgAgree in surveys.imgAgree" v-bind:key="imgAgree.optionA"><b-img rounded="circle" :src="imgAgree.urlA" class="img-body"></b-img></div>
         </div>
         <div class="row">
             <div class="col" v-for="imgAgree in surveys.imgAgree" v-bind:key="imgAgree.optionA"><h5>{{imgAgree.optionA}}</h5></div>
@@ -17,10 +17,23 @@ export default {
     props:['surveys'],
     name: 'qagreement',
     data (){
-      return{                
+      return{   
+           ansDefault: '',             
       }
     },
     created() {  
+    },
+    methods: {
+        clickans(ans) {
+      // this.$emit(ans, yesnoanswer);
+      this.ansDefault = [];
+      this.ansDefault.push(ans);
+      console.log(this.ansDefault);
+    },
+    edit: function(data) {
+      this.ansDefault.push(data);
+      console.log(this.ansDefault);
+    }
     }
 }
 </script>
@@ -40,7 +53,7 @@ export default {
     margin-top:1vh;
     
 }
-.h2{
+h2{
     margin-top:3vh;
     text-align: justify;
     text-indent: 45px;

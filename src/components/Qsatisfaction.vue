@@ -1,7 +1,7 @@
 <template>
-<div style="margin: 1% 1% 1% 1%; min-height: 5vh;  max-height:65vh;">
-       <h5>{{surveys.qid}}. {{surveys.qname}}</h5>
-       <div class="h3"><h3>{{surveys.ans[0].ansname}}</h3></div>
+<div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
+<h4>{{surveys.qtitle}}</h4>
+<h5>{{surveys.qid}} ) {{surveys.qname}}</h5>
        <hr>
        <h5>{{ surveys.titleBe }}</h5>
         <div class="row">
