@@ -22,7 +22,8 @@ export default {
   data() {
     return {
       // answer:[],
-      textinput: ''
+      textinput: '',
+      qid : this.surveys.qid,
     };
   },
   created() {},

@@ -18,7 +18,10 @@ export default {
     name: 'qagreement',
     data (){
       return{   
-           ansDefault: '',             
+           answered: {
+               selected: [],
+               qid: this.surveys.qid
+           },             
       }
     },
     created() {  
@@ -26,13 +29,8 @@ export default {
     methods: {
         clickans(ans) {
       // this.$emit(ans, yesnoanswer);
-      this.ansDefault = [];
-      this.ansDefault.push(ans);
-      console.log(this.ansDefault);
-    },
-    edit: function(data) {
-      this.ansDefault.push(data);
-      console.log(this.ansDefault);
+       this.answered.selected = ans
+        console.log(this.answered)      
     }
     }
 }

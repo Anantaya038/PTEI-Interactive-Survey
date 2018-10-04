@@ -1,19 +1,19 @@
 <template>
     <div>
-        <form-wizard title="" subtitle="" stepSize="xs">
+        <form-wizard title="" subtitle="" stepSize="xs" @on-change="onChange" @on-complete="onComplete">
             <!-- Loop through each question and create a tab-content -->
             <!-- Check the question type and load corresponding component -->            
                 <tab-content title="" v-for="(question,index) in questions" :key="question.qid">
                     <!-- v-if="question.type == ???" -->
-                    <mchoice v-if="question.type == 'mchoice'" :surveys="question" user="response1" :answer.sync="answers[index]"></mchoice>
-                    <q-yes-no v-if="question.type == 'q-yes-no'" :surveys="question" user="response1"  :answer.sync="answers[index]"></q-yes-no>
-                    <qimg v-if="question.type == 'qimg'" :surveys="question"  :answer.sync="answers[index]"></qimg>
-                    <qtextinput v-if="question.type == 'qtextinput'" :surveys="question"  :answer.sync="answers[index]"></qtextinput>                                            
-                    <qexpect v-if="question.type == 'qexpect'" :surveys="question"  :answer.sync="answers[index]"></qexpect>
-                    <qagreement v-if="question.type == 'qagreement'" :surveys="question"  :answer.sync="answers[index]"></qagreement>
-                    <qsatisfaction v-if="question.type == 'qsatisfaction'" :surveys="question"  :answer.sync="answers[index]"></qsatisfaction>
-                    <qexpend v-if="question.type == 'qexpend'" :surveys="question"  :answer.sync="answers[index]"></qexpend>
-                    <qhours v-if="question.type == 'qhours'" :surveys="question"  :answer.sync="answers[index]"></qhours>
+                    <mchoice v-if="question.type == 'mchoice'" :surveys="question" user="response1" :answer.sync="answers[index]" :ref="'q'+index"></mchoice>
+                    <q-yes-no v-if="question.type == 'q-yes-no'" :surveys="question" user="response1"  :answer.sync="answers[index]" :ref="'q'+index"></q-yes-no>
+                    <qimg v-if="question.type == 'qimg'" :surveys="question"  :answer.sync="answers[index]" :ref="'q'+index"></qimg>
+                    <qtextinput v-if="question.type == 'qtextinput'" :surveys="question"  :answer.sync="answers[index]" :ref="'q'+index"></qtextinput>                                            
+                    <qexpect v-if="question.type == 'qexpect'" :surveys="question"  :answer.sync="answers[index]" :ref="'q'+index"></qexpect>
+                    <qagreement v-if="question.type == 'qagreement'" :surveys="question"  :answer.sync="answers[index]" :ref="'q'+index"></qagreement>
+                    <qsatisfaction v-if="question.type == 'qsatisfaction'" :surveys="question"  :answer.sync="answers[index]" :ref="'q'+index"></qsatisfaction>
+                    <qexpend v-if="question.type == 'qexpend'" :surveys="question"  :answer.sync="answers[index]" :ref="'q'+index"></qexpend>
+                    <qhours v-if="question.type == 'qhours'" :surveys="question"  :answer.sync="answers[index]" :ref="'q'+index"></qhours>
                 </tab-content>     
         </form-wizard>
         <b-modal ref="modal" body-class="hhhh" centered hide-footer hide-header hide-header-close  title=" ">
@@ -59,6 +59,18 @@ export default {
       
     };
   }, 
+  methods:{
+    onChange(prev, next){
+      console.log('changed from' + prev+ 'to' + next)
+      var qid = 'q'+ prev
+      console.log(this.$refs[qid][0].answered);
+      
+      
+    },
+   onComplete: function(){
+      alert('Yay. Done!');
+   }
+  },
   firestore() {
     return {
       // Get all questions and render all at once

@@ -3,17 +3,16 @@
     <h2>{{surveys.qid}}. {{surveys.qname}} </h2>
     <div class="row">
     <div class="col-6" v-for="ans in surveys.ans" v-bind:key="ans.option">
-        <b-form-checkbox v-model="ans.selected" @change="getselected(ans.option,!ans.selected)">
+        <b-form-checkbox :key="ans.option" :value="ans.option" v-model="answered.selected">
                 <h4>{{ans.option}}</h4>
         </b-form-checkbox>        
     </div>
     <div class="row"></div>
-    <div v-if="surveys.ans[surveys.ans.length - 1].selected">
+    <div v-if="answered.selected ==='Others (please specify)'">
         <b-col sm="10">
-            <b-form-input v-model="surveys.ans[surveys.ans.length - 1].input" v-bind:value.sync="answer" @input="$emit('update:answer', $event.target.value)" id="input-large" size="lg" type="text" placeholder="Enter your answer"></b-form-input>
+            <b-form-input v-model="answered.text" id="input-large" size="lg" type="text" placeholder="Enter your answer"></b-form-input>
         </b-col>
     </div>  
-    <input type="input" v-bind:value.sync="answer" @input="$emit('update:answer', $event.target.value)" >
     </div>  
 </div>
 
@@ -24,18 +23,13 @@ export default {
   name: "mchoice",
   data() {
     return {
-      answers: [],
+      answered: {
+        selected: [],
+        text: ''
+      },
     };
   },
   created() {},
-  methods: { 
-      getselected: function(option, selected) {
-      var answer = {option, selected};
-      var index = this.surveys.ans.map(function(e) { return e.option; }).indexOf(option) // find index
-      this.surveys.ans[index] = answer; // edit selected
-      console.log(this.surveys.ans[index])
-    }
-  }
 };
 </script>
 

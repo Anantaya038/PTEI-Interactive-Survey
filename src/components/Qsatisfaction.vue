@@ -5,7 +5,9 @@
        <hr>
        <h5>{{ surveys.titleBe }}</h5>
         <div class="row">
-            <div class="col" v-for="img in surveys.img" v-bind:key="img.url"><b-img rounded="circle" :src="img.url" class="img-body"></b-img></div>
+            <div class="col" v-for="img in surveys.img" v-bind:key="img.url">
+                 <div in surveys.img v-on:click="clickansBe(img.option)">
+                <b-img rounded="circle" :src="img.url" class="img-body"></b-img></div></div>
         </div>
         <div class="row">
             <div class="col" v-for="img in surveys.img" v-bind:key="img.option"><p>{{img.option}}</p></div>
@@ -13,7 +15,9 @@
         <hr>
         <h5>{{ surveys.titleAf }}</h5>
         <div class="row">
-            <div class="col" v-for="img in surveys.img" v-bind:key="img.url"><b-img rounded="circle" :src="img.url" class="img-body"></b-img></div>
+            <div class="col" v-for="img in surveys.img" v-bind:key="img.url">
+                 <div in surveys.img v-on:click="clickansAf(img.option)">
+                <b-img rounded="circle" :src="img.url" class="img-body"></b-img></div></div>
         </div>
         <div class="row">
             <div class="col" v-for="img in surveys.img" v-bind:key="img.option"><p>{{img.option}}</p></div>
@@ -27,10 +31,28 @@ export default {
     props:['surveys'],
     name: 'qsatisfaction',
     data (){
-      return{                
+      return{     
+          answered: {
+              selectedB : null,
+              selectedA : null,
+              qid : this.surveys.qid,
+
+          }           
       }
     },
     created() {   
+    },
+    methods: {
+          clickansBe(ans){
+            // this.$emit(ans, yesnoanswer);
+            this.answered.selectedB = ans
+            console.log(this.answered)       
+        },
+        clickansAf(ans){
+            // this.$emit(ans, yesnoanswer);
+            this.answered.selectedA = ans
+            console.log(this.answered)       
+        }    
     }
 }
 </script>

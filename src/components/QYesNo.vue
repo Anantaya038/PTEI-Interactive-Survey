@@ -22,9 +22,9 @@ export default {
       return{     
           answered: {
               selected: null,
-              text: ''
+              text: '',
+              qid : this.surveys.qid,
           },
-
       }
     },
     methods: {

@@ -2,10 +2,10 @@
 <div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
        <h2>{{surveys.qid}}. {{surveys.qname}}</h2>
         <div class="row">
-        <div class="col-6" v-on:click="clickans(ans.option)" v-for="ans in surveys.ans" v-bind:key="ans.option"><b-img rounded :src="ans.url" class="img-body"></b-img><h5>{{ans.option}}</h5></div>
+        <div class="col-6" v-for="ans in surveys.ans" v-on:click="clickans(ans.option)" v-bind:key="ans.option"><b-img rounded :src="ans.url" class="img-body"></b-img><h5>{{ans.option}}</h5></div>
         
 </div>
-  <div v-if="ansDefault[0] === 'Others (please specify)'"><b-form-input v-model="textinput" @change="edit(textinput)" id="input-small" size="sm" type="text" placeholder="Enter your answer"></b-form-input>
+  <div v-if="answered.selected === 'Others (please specify)'"><b-form-input v-model="answered.text" id="input-small" size="sm" type="text" placeholder="Enter your answer"></b-form-input>
   </div>
 </div>
 </template>
@@ -15,22 +15,21 @@ export default {
   name: "qimg",
   data() {
     return {
-      ansDefault: '',
-      textinput:''
+      answered:{
+        selected: null,
+        text:'',
+        qid : this.surveys.qid,
+      }
+      
     };
   },
   created() {},
   methods: {
     clickans(ans) {
       // this.$emit(ans, yesnoanswer);
-      this.ansDefault = [];
-      this.ansDefault.push(ans);
-      console.log(this.ansDefault);
+      this.answered.selected = ans
+      console.log(this.answered) 
     },
-    edit: function(data) {
-      this.ansDefault.push(data);
-      console.log(this.ansDefault);
-    }
   }
 };
 </script>

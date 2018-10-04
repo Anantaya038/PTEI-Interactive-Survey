@@ -4,15 +4,15 @@
 <h6>{{surveys.qtitle}}</h6>
 <h5>{{surveys.qid}}. {{surveys.qname}}</h5>
        <h6>{{ surveys.titleE }}</h6>
-        <div class="row">
-            <div class="col" v-on:click="clickans(imgExpect.optionE)" v-for="imgExpect in surveys.imgExpect" v-bind:key="imgExpect.optionE"><b-img rounded="circle" :src="imgExpect.urlE" class="img-body"></b-img></div>
+        <div class="row" >
+            <div class="col" v-for="imgExpect in surveys.imgExpect" v-on:click="clickansE(imgExpect.optionE)" v-bind:key="imgExpect.optionE"><b-img rounded="circle" :src="imgExpect.urlE" class="img-body"></b-img></div>
         </div>
         <div class="row">
             <div class="col" v-for="imgExpect in surveys.imgExpect" v-bind:key="imgExpect.optionE"><p>{{imgExpect.optionE}}</p></div>
         </div>
         <h6>{{ surveys.titleS }}</h6>
         <div class="row">
-            <div class="col"  v-on:click="clickansS(imgSatis.optionS)" v-for="imgSatis in surveys.imgSatis" v-bind:key="imgSatis.optionS"><b-img rounded="circle" :src="imgSatis.urlS" class="img-body"></b-img></div>
+            <div class="col" v-for="imgSatis in surveys.imgSatis" v-on:click="clickansS(imgSatis.optionS)" v-bind:key="imgSatis.optionS"><b-img rounded="circle" :src="imgSatis.urlS" class="img-body"></b-img></div>
         </div>
         <div class="row">
             <div class="col" v-for="imgSatis in surveys.imgSatis" v-bind:key="imgSatis.optionS"><p>{{imgSatis.optionS}}</p></div>
@@ -26,21 +26,25 @@ export default {
   name: "qexpect",
   data() {
     return {
-      ansDefault: ''
+      answered: {
+        selectedE: null,
+        selectedS: null,
+        qid : this.surveys.qid,
+      }
     };
   },
   created() {},
   methods:{
-      clickans(ans) {
+    clickansE(ans) {
       // this.$emit(ans, yesnoanswer);
-      this.ansDefault = [];
-      this.ansDefault.push(ans);
-      console.log(this.ansDefault);
+      this.answered.selectedE = ans
+      console.log(this.answered) 
     },
-    edit: function(data) {
-      this.ansDefault.push(data);
-      console.log(this.ansDefault);
-    }
+    clickansS(ans) {
+      // this.$emit(ans, yesnoanswer);
+      this.answered.selectedS = ans
+      console.log(this.answered) 
+    },
   },
 };
 </script>
