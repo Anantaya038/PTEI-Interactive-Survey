@@ -5,11 +5,11 @@
     <hr>
     <carousel>
       <slide v-for="ans in surveys.ans" v-bind:key="ans.ansname">
-      <b-form-checkbox v-model="ans.selected" @change="getselected(ans.ansname,!ans.selected)">
+      <b-form-checkbox :key="ans.ansname" :value="ans.ansname" v-model="answered.selected">
         <h4>{{ans.ansname}}</h4>
       </b-form-checkbox> 
-      <div v-if="ans.selected">
-        <b-form-input v-model="surveys.ans[surveys.ans.length - 1].input" type="text" placeholder="Enter your answer"></b-form-input>
+      <div v-if="answered.selected">
+        <b-form-input v-model="answered.text" type="text" placeholder="Enter your answer"></b-form-input>
       </div>          
       </slide>
     </carousel>
@@ -22,17 +22,29 @@ export default {
   data() {
     return {
       // answer:[],
-      textinput: '',
-      qid : this.surveys.qid,
+      // textinput: '',
+      // qid : this.surveys.qid,
+      answered: {
+        qid: this.surveys.qid,
+        selected: [],
+        text:''
+      }
     };
   },
-  created() {},
+   created() {
+    if(this.defaultans){
+      this.answered = this.defaultans
+    }
+  },
   methods:{
-      getselected: function(ansname, selected) {
-      var answer = {ansname, selected};
-      var index = this.surveys.ans.map(function(e) { return e.ansname; }).indexOf(ansname) // find index
-      this.surveys.ans[index] = answer; // edit selected
-      console.log(this.surveys.ans[index])
+    //   getselected: function(ansname, selected) {
+    //   var answer = {ansname, selected};
+    //   var index = this.surveys.ans.map(function(e) { return e.ansname; }).indexOf(ansname) // find index
+    //   this.surveys.ans[index] = answer; // edit selected
+    //   console.log(this.surveys.ans[index])
+    // }
+    getselected: function(){
+
     }
   },
   components: {}

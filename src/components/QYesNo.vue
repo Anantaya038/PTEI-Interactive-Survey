@@ -34,8 +34,11 @@ export default {
             console.log(this.answered)       
         }   
     },
-    created() {    
-    },
+     created() {
+    if(this.defaultans){
+      this.answered = this.defaultans
+    }
+  },
 }
 </script>
 

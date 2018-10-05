@@ -8,7 +8,7 @@
         </b-form-checkbox>        
     </div>
     <div class="row"></div>
-    <div v-if="answered.selected ==='Others (please specify)'">
+    <div v-if="answered.selected.indexOf('Others (please specify)') != -1">  
         <b-col sm="10">
             <b-form-input v-model="answered.text" id="input-large" size="lg" type="text" placeholder="Enter your answer"></b-form-input>
         </b-col>
@@ -29,7 +29,14 @@ export default {
       },
     };
   },
-  created() {},
+   created() {
+    if(this.defaultans){
+      this.answered = this.defaultans
+    }
+  },
+  methods:{
+   
+  }
 };
 </script>
 

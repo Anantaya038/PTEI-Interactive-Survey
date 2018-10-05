@@ -5,14 +5,14 @@
             <h2>Answer :</h2>
             <!-- <b-form-input v-bind:value.sync="answer" v-model="answer" @change="edit(answer)" @input="$emit('update:answer', $event.target.value)" id="input-large" size="lg" type="text" placeholder="Enter your answer"></b-form-input> -->
             <b-col sm="8">
-                <b-form-input v-model="answered.text" id="input-large" size="lg" type="text" placeholder="Enter your answer"></b-form-input>
+                <b-form-input v-model="answered.text"  id="input-large" size="lg" type="text" placeholder="Enter your answer"></b-form-input>
             </b-col>
         </div>
     </div>
 </template>
 <script>
 export default {
-  props: ["surveys", "answer"],
+  props: ["surveys", "defaultans"],
   name: "qtextinput",
   data() {
     return {
@@ -23,7 +23,11 @@ export default {
       }
     };
   },
-  created() {},
+  created() {
+    if(this.defaultans){
+      this.answered = this.defaultans
+    }
+  },
 };
 </script>
 

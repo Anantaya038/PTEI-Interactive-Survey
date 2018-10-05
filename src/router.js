@@ -16,6 +16,7 @@ import Qagreement from './components/Qagreement'
 import Qsatisfaction from './components/Qsatisfaction'
 import Qexpend from './components/Qexpend'
 import Qhours from './components/Qhours'
+import SurveyResponse from './components/SurveyResponse'
 
 Vue.use(Router)
 
@@ -30,14 +31,15 @@ const routes = [
         { path: 'new', component: Content},
         { path: 'start', component: Firestore},
         { path: 'qimg', component: Qimg},
-        { path: 'loader', component: SurveyLoader},
+        { path: 'loader/:id', component: SurveyLoader},
         { path: 'qyesno', component: QYesNo},
         { path: 'qtextinput', component: Qtextinput},
         { path: 'qexpect', component: Qexpect},
         { path: 'qagreement', component: Qagreement},
         { path: 'qsatisfaction', component: Qsatisfaction},
         { path: 'qexpend', component: Qexpend},
-        { path: 'qhours', component: Qhours}
+        { path: 'qhours', component: Qhours},
+        { path: 'surveyresponse', component: SurveyResponse}
 
       ]
     }

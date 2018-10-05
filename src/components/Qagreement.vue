@@ -24,8 +24,11 @@ export default {
            },             
       }
     },
-    created() {  
-    },
+     created() {
+    if(this.defaultans){
+      this.answered = this.defaultans
+    }
+  },
     methods: {
         clickans(ans) {
       // this.$emit(ans, yesnoanswer);

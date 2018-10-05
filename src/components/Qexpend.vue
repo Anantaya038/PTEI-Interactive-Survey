@@ -17,8 +17,11 @@ export default {
       return{                
       }
     },
-    created() {      
+     created() {
+    if(this.defaultans){
+      this.answered = this.defaultans
     }
+  },
 }
 </script>
 
