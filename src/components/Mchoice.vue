@@ -19,7 +19,7 @@
 </template>
 <script>
 export default {
-  props: ["surveys","answer",],
+  props: ["surveys","defaultans",],
   name: "mchoice",
   data() {
     return {

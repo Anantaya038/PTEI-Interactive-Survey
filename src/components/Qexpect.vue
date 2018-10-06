@@ -22,7 +22,7 @@
 </template>
 <script>
 export default {
-  props: ["surveys"],
+  props: ["surveys","defaultans"],
   name: "qexpect",
   data() {
     return {

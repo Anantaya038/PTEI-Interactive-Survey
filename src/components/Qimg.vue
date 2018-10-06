@@ -10,7 +10,7 @@
 </template>
 <script>
 export default {
-  props: ["surveys"],
+  props: ["surveys","defaultans"],
   name: "qimg",
   data() {
     return {

@@ -1,8 +1,8 @@
 <template>
     <div class="row">
      <div class="col-4" v-for="(answer,index) in answers" v-bind:key="answer.answers">
-        <b-button class="ans"  v-on:click="send(answer['.key'])">Response {{ ++index }} </b-button>
-        <b-img class="delete"  @click="deleteans(answer['.key'])" src="https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fdelete.png?alt=media&token=3740d8f6-080b-4508-881d-ecba80e14c47" fluid alt="Responsive image" />
+        <b-button class="ans" v-on:click="send(answer['.key'])"><h3>Response {{ ++index }}</h3></b-button>
+        <b-img class="delete" @click="deleteans(answer['.key'])" src="https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fdelete.png?alt=media&token=3740d8f6-080b-4508-881d-ecba80e14c47" fluid alt="Responsive image" />
     </div>
     </div>
 </template>
@@ -46,17 +46,18 @@ import { firestore } from "../firebase.js";
   padding: 0px;
 }
 .delete{
-    margin-top: -25vh;
-    margin-left: 22vw;
+    margin-top: -16vh;
+    margin-left: 25vw;
     width: 7vh;
     height: 7vh;
 }
 .ans{
-    margin: 4vh;
     margin-top: 5vh;
-    margin-left: 2vw;
-    height: 5vh;
-    width: 20vw;    
+    height: 7vh;
+    width: 20vw;  
+}
+.col-4{
+    text-align: center;  
 }
 </style>
 

@@ -3,7 +3,7 @@
         <form-wizard title="" subtitle="" stepSize="xs" @on-change="onChange" @on-complete="onComplete">
             <!-- Loop through each question and create a tab-content -->
             <!-- Check the question type and load corresponding component -->            
-                <tab-content title="" v-for="(question,index) in questions" :key="question.qid">
+                <tab-content title="" v-for="(question,index) in questions" :key="question.qid" v-if="dataReady">
                     <!-- v-if="question.type == ???" -->
                     <mchoice v-if="question.type == 'mchoice'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></mchoice>
                     <q-yes-no v-if="question.type == 'q-yes-no'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></q-yes-no>
@@ -55,11 +55,13 @@ export default {
       true: true,
       answers: [],
       userid: "",
-      defaultans: []
+      defaultans: [],
+      dataReady: false
     };
   },
   methods: {
     onChange(prev, next) {
+      
       console.log("changed from" + prev + "to" + next);
       var qid = "q" + prev;
       var data = {
@@ -92,9 +94,11 @@ export default {
             .doc(doc.id)
             .set(answereds);
         });
+        
     },
     onComplete: function() {
-      alert("Yay. Done!");
+      alert("Yay. Done!")
+      this.$router.push({path:'/finish'})
     }
   },
   firestore() {
@@ -114,15 +118,14 @@ export default {
     console.log(this.$route.params.id);
 
     if (this.$route.params.id == "new") {
-      firestore
-        .collection("answers")
-        .add({
+      firestore.collection("answers").add({
           datetime: Date.now(),
           answered: []
         })
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
           parent.userid = docRef.id;
+          parent.dataReady = true;
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
@@ -134,6 +137,7 @@ export default {
           if (doc.exists) {
             console.log("Document data:", doc.data());
             parent.defaultans = doc.data().answered
+            parent.dataReady = true;
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");

@@ -14,7 +14,7 @@
 <script>
 
 export default {
-    props:['surveys'],
+    props:['surveys','defaultans'],
     name: 'qagreement',
     data (){
       return{   

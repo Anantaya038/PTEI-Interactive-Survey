@@ -28,7 +28,7 @@
 <script>
 
 export default {
-    props:['surveys'],
+    props:['surveys','defaultans'],
     name: 'qsatisfaction',
     data (){
       return{     

@@ -19,11 +19,11 @@ export default {
       answered: {
         text: '',
         qid : this.surveys.qid,
-
       }
     };
   },
-  created() {
+  mounted() {
+    console.log('create:'+this.defaultans);
     if(this.defaultans){
       this.answered = this.defaultans
     }

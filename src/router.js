@@ -17,6 +17,7 @@ import Qsatisfaction from './components/Qsatisfaction'
 import Qexpend from './components/Qexpend'
 import Qhours from './components/Qhours'
 import SurveyResponse from './components/SurveyResponse'
+import SurveyFinish from './components/SurveyFinish'
 
 Vue.use(Router)
 
@@ -25,6 +26,7 @@ const routes = [
     { path: '/firebase', component: Firestore },
     { path: '/survey', component: Survey },
     { path: '/login', component: Operator },
+    { path: '/finish', component: SurveyFinish },
     { path: '/',
       component: Krong,
       children:[

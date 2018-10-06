@@ -11,7 +11,7 @@
 <script>
 
 export default {
-    props:['surveys'],
+    props:['surveys','defaultans'],
     name: 'qexpend',
     data (){
       return{                
