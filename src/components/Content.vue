@@ -15,9 +15,6 @@
 </template>
 
 <script>
-export default {
-
-}
 </script>
 
 <style scoped>
@@ -34,5 +31,9 @@ export default {
     width: 50vw;
     height: 10vh;
     font-size: 3.5vh;
+}
+.hhhh {
+  max-height: 0px;
+  padding: 0px;
 }
 </style>

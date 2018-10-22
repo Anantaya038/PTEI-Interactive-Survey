@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import HelloWorld from './components/HelloWorld.vue'
-import Krong from './components/Krong.vue'
+import Bg from './components/Bg.vue'
 import Content from './components/Content'
 import Firestore from './components/Firestore'
 import Survey from './components/Survey'
@@ -28,7 +28,7 @@ const routes = [
     { path: '/login', component: Operator },
     { path: '/finish', component: SurveyFinish },
     { path: '/',
-      component: Krong,
+      component: Bg,
       children:[
         { path: 'new', component: Content},
         { path: 'start', component: Firestore},

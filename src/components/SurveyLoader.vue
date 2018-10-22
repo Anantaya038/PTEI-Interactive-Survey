@@ -12,8 +12,8 @@
                     <qexpect v-if="question.type == 'qexpect'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></qexpect>
                     <qagreement v-if="question.type == 'qagreement'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></qagreement>
                     <qsatisfaction v-if="question.type == 'qsatisfaction'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></qsatisfaction>
-                    <qexpend v-if="question.type == 'qexpend'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></qexpend>
-                    <qhours v-if="question.type == 'qhours'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></qhours>
+                    <!-- <qexpend v-if="question.type == 'qexpend'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></qexpend> -->
+                    <qradio v-if="question.type == 'qradio'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></qradio>
                 </tab-content>     
         </form-wizard>
         <b-modal ref="modal" body-class="hhhh" centered hide-footer hide-header hide-header-close  title="">
@@ -31,9 +31,9 @@ import Qexpect from "./Qexpect";
 import Qagreement from "./Qagreement";
 import Qsatisfaction from "./Qsatisfaction";
 import Qexpend from "./Qexpend";
-import Qhours from "./Qhours";
 import { firestore } from "../firebase.js";
 import { Circle8 } from "vue-loading-spinner";
+import Qradio from "./Qradio";
 
 export default {
   name: "surveyloader",
@@ -47,7 +47,7 @@ export default {
     Qagreement,
     Qsatisfaction,
     Qexpend,
-    Qhours
+    Qradio
   },
   data() {
     return {
