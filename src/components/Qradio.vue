@@ -3,12 +3,12 @@
     <h2>{{surveys.qid}}. {{surveys.qname}} </h2>
     <div class="row">
     <div class="col-6" v-for="ans in surveys.ans" v-bind:key="ans.option">
-        <b-form-checkbox v-model="answered.selected" :key="ans.option" :value="ans.option" :options="options" name="radioSubComponent">
+        <b-form-checkbox v-model="answered.selectedRadio" :key="ans.option" :value="ans.option" :options="options" name="radioSubComponent">
                 <h4>{{ans.option}}</h4>
         </b-form-checkbox>        
     </div>
     <div class="row"></div>
-    <div v-if="answered.selected.indexOf('Others (please specify)') != -1">  
+    <div v-if="answered.selectedRadio.indexOf('Others (please specify)') != -1">  
         <b-col sm="10">
             <b-form-input v-model="answered.text" id="input-large" size="lg" type="text" placeholder="Enter your answer"></b-form-input>
         </b-col>
@@ -24,10 +24,9 @@ export default {
   name: "qradio",
   data() {
     return {
-
       answered: {
         text: '',
-        selected:[],
+        selectedRadio:'',
         qid: this.surveys.qid,
       },
     };
