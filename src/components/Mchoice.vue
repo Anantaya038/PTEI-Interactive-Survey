@@ -43,7 +43,7 @@ export default {
 
 <style scoped>
 .row {
-  margin: 2% 2% 0% 2%;
+  margin: 2% 0% 0% 2%;
 }
 </style>
 

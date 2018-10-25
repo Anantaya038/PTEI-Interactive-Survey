@@ -26,8 +26,8 @@ async mounted() {
     this.$refs.modal.show();
     setTimeout(() => {
       this.$refs.modal.hide();
-      this.$router.push({path:'/new'})
-    }, 2000);
+      this.$router.push({path:'/login'})
+    }, 3000);
      
 },
 }

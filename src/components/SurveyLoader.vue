@@ -12,7 +12,7 @@
                     <qexpect v-if="question.type == 'qexpect'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></qexpect>
                     <qagreement v-if="question.type == 'qagreement'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></qagreement>
                     <qsatisfaction v-if="question.type == 'qsatisfaction'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></qsatisfaction>
-                    <!-- <qexpend v-if="question.type == 'qexpend'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></qexpend> -->
+                    <qexpend v-if="question.type == 'qexpend'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></qexpend>
                     <qradio v-if="question.type == 'qradio'" :surveys="question" :ref="'q'+index" :defaultans="defaultans[index]"></qradio>
                 </tab-content>     
         </form-wizard>
@@ -34,6 +34,7 @@ import Qexpend from "./Qexpend";
 import { firestore } from "../firebase.js";
 import { Circle8 } from "vue-loading-spinner";
 import Qradio from "./Qradio";
+import moment from 'moment';
 
 export default {
   name: "surveyloader",
@@ -56,7 +57,8 @@ export default {
       answers: [],
       userid: "",
       defaultans: [],
-      dataReady: false
+      dataReady: false,
+  
     };
   },
   methods: {
@@ -119,7 +121,7 @@ export default {
 
     if (this.$route.params.id == "new") {
       firestore.collection("answers").add({
-          datetime: Date.now(),
+          datetime: moment().format('MM/DD/YYYY hh:mm:ss'),
           answered: []
         })
         .then(function(docRef) {

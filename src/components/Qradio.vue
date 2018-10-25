@@ -14,9 +14,7 @@
         </b-col>
     </div>  
     </div>  
-
 </div>
-
 </template>
 <script>
 export default {
@@ -45,7 +43,7 @@ export default {
 
 <style scoped>
 .row {
-margin: 5% 0% 0% 10%;
+margin: 5% 0% 0% 2%;
 
 }
 

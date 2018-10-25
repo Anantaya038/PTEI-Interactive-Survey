@@ -6,7 +6,7 @@
                 </div>
                 <h2>Manage Responses</h2>
                 <b-form-input class="input" type="password" placeholder="Enter Password"></b-form-input>
-            <router-link to="/surveyresponse">
+            <router-link to="/new">
             <b-button class="btn"><h4>Enter</h4></b-button>
             </router-link>
         </b-card>
