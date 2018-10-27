@@ -1,15 +1,16 @@
 <template>
 <div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
-
-<h6>{{surveys.qtitle}}</h6>
-<h5>{{surveys.qid}}. {{surveys.qname}}</h5>
-       <h6>{{ surveys.titleE }}</h6>
+{{surveys.qtitle}}
+<carousel :per-page="1" :navigate-to="someLocalProperty" mouse-drag="false">
+    <slide v-for="(qsub,index) in surveys.qsub" v-bind:key="(qsub.option,index)">
+<h5>{{surveys.qid}} ) {{qsub.option}}</h5>
+       <h6>Level of importance ...</h6>
         <div class="row" >
-          <div class="col" v-on:click="clickansE('1')"><b-img rounded="circle" :src="selectedsE[0]" class="img-body"></b-img></div>
-          <div class="col" v-on:click="clickansE('2')"><b-img rounded="circle" :src="selectedsE[1]" class="img-body"></b-img></div> 
-          <div class="col" v-on:click="clickansE('3')"><b-img rounded="circle" :src="selectedsE[2]" class="img-body"></b-img></div>
-          <div class="col" v-on:click="clickansE('4')"><b-img rounded="circle" :src="selectedsE[3]" class="img-body"></b-img></div> 
-          <div class="col" v-on:click="clickansE('5')"><b-img rounded="circle" :src="selectedsE[4]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickansE(index,1)"><b-img rounded="circle" :src="selectedsE[index][0]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickansE(index,2)"><b-img rounded="circle" :src="selectedsE[index][1]" class="img-body"></b-img></div> 
+          <div class="col" v-on:click="clickansE(index,3)"><b-img rounded="circle" :src="selectedsE[index][2]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickansE(index,4)"><b-img rounded="circle" :src="selectedsE[index][3]" class="img-body"></b-img></div> 
+          <div class="col" v-on:click="clickansE(index,5)"><b-img rounded="circle" :src="selectedsE[index][4]" class="img-body"></b-img></div>
         </div>
         <div class="row">
             <div class="col"><p>Not important</p></div>
@@ -18,14 +19,14 @@
             <div class="col"><p>Very Important</p></div>
             <div class="col"><p>Absolutely essential</p></div>
         </div>
-        <h6>{{ surveys.titleS }}</h6>
-        <div class="row" >
-          <div class="col" v-on:click="clickansS('1')"><b-img rounded="circle" :src="selected[0]" class="img-body"></b-img></div>
-          <div class="col" v-on:click="clickansS('2')"><b-img rounded="circle" :src="selected[1]" class="img-body"></b-img></div> 
-          <div class="col" v-on:click="clickansS('3')"><b-img rounded="circle" :src="selected[2]" class="img-body"></b-img></div>
-          <div class="col" v-on:click="clickansS('4')"><b-img rounded="circle" :src="selected[3]" class="img-body"></b-img></div> 
-          <div class="col" v-on:click="clickansS('5')"><b-img rounded="circle" :src="selected[4]" class="img-body"></b-img></div>
-          <div class="col" v-on:click="clickansS('6')"><b-img rounded="circle" :src="selected[5]" class="img-body"></b-img></div>
+        <h6> Your satisfaction of Phuket... </h6>
+        <div class="row">
+          <div class="col" v-on:click="clickansS(index,1)"><b-img rounded="circle" :src="selected[index][0]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickansS(index,2)"><b-img rounded="circle" :src="selected[index][1]" class="img-body"></b-img></div> 
+          <div class="col" v-on:click="clickansS(index,3)"><b-img rounded="circle" :src="selected[index][2]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickansS(index,4)"><b-img rounded="circle" :src="selected[index][3]" class="img-body"></b-img></div> 
+          <div class="col" v-on:click="clickansS(index,5)"><b-img rounded="circle" :src="selected[index][4]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickansS(index,6)"><b-img rounded="circle" :src="selected[index][5]" class="img-body"></b-img></div>
         </div>
         <div class="row">
             <div class="col"><p>Very dissatisfied</p></div>
@@ -36,6 +37,11 @@
             <div class="col"><p>N/A</p></div>
         </div>
 
+    
+    </slide>
+  </carousel>
+
+     
 </div>
 </template>
 <script>
@@ -45,9 +51,10 @@ export default {
   data() {
     return {
       answered: {
-        selectedE: null,
-        selectedS: null,
-        qid: this.surveys.qid
+
+        selectedE: [],
+        selectedS: [],
+        qid : this.surveys.qid
       },
       active: [
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs1.png?alt=media&token=1d0c8c03-afff-42e5-9755-4e64bcb9bc9e",
@@ -65,14 +72,7 @@ export default {
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs5%20(2).png?alt=media&token=142373a1-5d1c-4667-97da-414275fc66ba",
          "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fna%20(2).png?alt=media&token=3b5310c2-2cb1-44e2-9822-b697516a0b21"
       ],
-      selected: [
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs1%20(2).png?alt=media&token=c50390a1-5e61-4088-bede-7681913e5fa1",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs2%20(2).png?alt=media&token=8e93c90c-654e-4d37-bc31-5289438e7a13",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs3%20(2).png?alt=media&token=10486b1f-aeee-4342-b163-0746eaa9eab0",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs4%20(2).png?alt=media&token=639a9fd5-bc92-41e8-84f7-8fd51cdb55e7",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs5%20(2).png?alt=media&token=142373a1-5d1c-4667-97da-414275fc66ba",
-         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fna%20(2).png?alt=media&token=3b5310c2-2cb1-44e2-9822-b697516a0b21"
-      ],
+      selected: [],
       activeE: [
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn1.png?alt=media&token=01541849-2679-4260-aed5-cf721cb1e132",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn2.png?alt=media&token=54fbfe39-857a-4c1c-a1dd-698965e8b143",
@@ -87,16 +87,30 @@ export default {
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn4%20(2).png?alt=media&token=d4dd5ef5-7bcf-460a-8ce3-174fdcdd0a05",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn5%20(2).png?alt=media&token=d1d561b2-be7d-46e0-81b9-d64180f7dd84"
       ],
-      selectedsE: [
+      selectedsE: []
+    };
+  },
+  created() {
+    var initselected = [
+        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs1%20(2).png?alt=media&token=c50390a1-5e61-4088-bede-7681913e5fa1",
+        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs2%20(2).png?alt=media&token=8e93c90c-654e-4d37-bc31-5289438e7a13",
+        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs3%20(2).png?alt=media&token=10486b1f-aeee-4342-b163-0746eaa9eab0",
+        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs4%20(2).png?alt=media&token=639a9fd5-bc92-41e8-84f7-8fd51cdb55e7",
+        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs5%20(2).png?alt=media&token=142373a1-5d1c-4667-97da-414275fc66ba",
+        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fna%20(2).png?alt=media&token=3b5310c2-2cb1-44e2-9822-b697516a0b21"
+      ]
+    var initselectedE = [
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn1%20(2).png?alt=media&token=2fc120a3-5bd6-48ef-bb2d-2424e7a4229c",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn2%20(2).png?alt=media&token=cfedee23-3cc5-4323-9685-8273ebeb5b46",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn3%20(2).png?alt=media&token=d51dceec-608f-4d0a-82ac-fb10a6ee865c",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn4%20(2).png?alt=media&token=d4dd5ef5-7bcf-460a-8ce3-174fdcdd0a05",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn5%20(2).png?alt=media&token=d1d561b2-be7d-46e0-81b9-d64180f7dd84"
       ]
-    };
-  },
-  created() {
+    console.log('created')
+    for(var i=0;i<=this.surveys.qsub.length;i++){
+      this.selected[i] = initselected;
+      this.selectedsE[i] = initselectedE;
+    }
     if (this.defaultans) {
       this.answered = this.defaultans
       this.clickansS(this.defaultans.selectedS)
@@ -105,24 +119,30 @@ export default {
     }
   },
   methods: {
-    clickansE(ans) {
-      // this.$emit(ans, yesnoanswer);
-      this.answered.selectedE = ans
+    clickansE(index,ans) {
+      this.answered.selectedE[index] = ans
+      var newE = [];
       for (var i = 0; i < this.inactiveE.length; i++) {
-        this.$set(this.selectedsE, i, this.inactiveE[i])
+        newE[i] = this.inactiveE[i]
       }
+      this.$set(this.selectedsE, index, newE)
+
       var clicknumber = this.activeE[ans - 1]
-      this.$set(this.selectedsE, ans - 1, clicknumber)
+      newE[ans - 1] = clicknumber
+      this.$set(this.selectedsE, index, newE)
       console.log(clicknumber)
     },
-    clickansS(ans) {
-      // this.$emit(ans, yesnoanswer);
-      this.answered.selectedS = ans
+    clickansS(index,ans) {
+      this.answered.selectedS[index] = ans
+      var newS = [];
       for (var i = 0; i < this.inactive.length; i++) {
-        this.$set(this.selected, i, this.inactive[i])
+        newS[i] = this.inactive[i]
       }
+      this.$set(this.selected, index, newS)
+
       var clicknumber = this.active[ans - 1]
-      this.$set(this.selected, ans - 1, clicknumber)
+      newS[ans - 1] = clicknumber
+      this.$set(this.selected, index, newS)
 
       console.log(clicknumber)
     }

@@ -26,13 +26,14 @@ export default {
       answered: {
         text: '',
         selectedChoice:[],
-        qid: this.surveys.qid
+        qid: this.surveys.qid,
+        
       },
     };
   },
    created() {
     if(this.defaultans){
-      this.answered = this.defaultans
+      this.answered = this.defaultans      
     }
   },
   methods:{

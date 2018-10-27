@@ -1,16 +1,18 @@
 <template>
 <div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
 <h4>{{surveys.qtitle}}</h4>
-<h5>{{surveys.qid}} ) {{surveys.qname}}</h5>
+<carousel :per-page="1" :navigate-to="someLocalProperty" mouse-drag="false">
+    <slide v-for="(qsub,index) in surveys.qsub" v-bind:key="(qsub.option,index)">
+<h5>{{surveys.qid}} ) {{qsub.option}}</h5>
        <hr>
        <h5>{{ surveys.titleBe }}</h5>
         <div class="row" >
-          <div class="col" v-on:click="clickansBe('1')"><b-img rounded="circle" :src="selectedsB[0]" class="img-body"></b-img></div>
-          <div class="col" v-on:click="clickansBe('2')"><b-img rounded="circle" :src="selectedsB[1]" class="img-body"></b-img></div> 
-          <div class="col" v-on:click="clickansBe('3')"><b-img rounded="circle" :src="selectedsB[2]" class="img-body"></b-img></div>
-          <div class="col" v-on:click="clickansBe('4')"><b-img rounded="circle" :src="selectedsB[3]" class="img-body"></b-img></div> 
-          <div class="col" v-on:click="clickansBe('5')"><b-img rounded="circle" :src="selectedsB[4]" class="img-body"></b-img></div>
-          <div class="col" v-on:click="clickansBe('6')"><b-img rounded="circle" :src="selectedsB[5]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickansBe(index,1)"><b-img rounded="circle" :src="selectedsB[index][0]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickansBe(index,2)"><b-img rounded="circle" :src="selectedsB[index][1]" class="img-body"></b-img></div> 
+          <div class="col" v-on:click="clickansBe(index,3)"><b-img rounded="circle" :src="selectedsB[index][2]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickansBe(index,4)"><b-img rounded="circle" :src="selectedsB[index][3]" class="img-body"></b-img></div> 
+          <div class="col" v-on:click="clickansBe(index,5)"><b-img rounded="circle" :src="selectedsB[index][4]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickansBe(index,6)"><b-img rounded="circle" :src="selectedsB[index][5]" class="img-body"></b-img></div>
         </div>
         <div class="row">
             <div class="col"><p>1</p></div>
@@ -23,12 +25,12 @@
         <hr>
         <h5>{{ surveys.titleAf }}</h5>
        <div class="row" >
-          <div class="col" v-on:click="clickansAf('1')"><b-img  rounded="circle" :src="selectedsA[0]" class="img-body"></b-img></div>
-          <div class="col" v-on:click="clickansAf('2')"><b-img  rounded="circle" :src="selectedsA[1]" class="img-body"></b-img></div> 
-          <div class="col" v-on:click="clickansAf('3')"><b-img  rounded="circle" :src="selectedsA[2]" class="img-body"></b-img></div>
-          <div class="col" v-on:click="clickansAf('4')"><b-img  rounded="circle" :src="selectedsA[3]" class="img-body"></b-img></div> 
-          <div class="col" v-on:click="clickansAf('5')"><b-img  rounded="circle" :src="selectedsA[4]" class="img-body"></b-img></div>
-          <div class="col" v-on:click="clickansAf('6')"><b-img  rounded="circle" :src="selectedsA[5]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickansAf(index,1)"><b-img  rounded="circle" :src="selectedsA[index][0]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickansAf(index,2)"><b-img  rounded="circle" :src="selectedsA[index][1]" class="img-body"></b-img></div> 
+          <div class="col" v-on:click="clickansAf(index,3)"><b-img  rounded="circle" :src="selectedsA[index][2]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickansAf(index,4)"><b-img  rounded="circle" :src="selectedsA[index][3]" class="img-body"></b-img></div> 
+          <div class="col" v-on:click="clickansAf(index,5)"><b-img  rounded="circle" :src="selectedsA[index][4]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickansAf(index,6)"><b-img  rounded="circle" :src="selectedsA[index][5]" class="img-body"></b-img></div>
         </div>
         <div class="row">
             <div class="col"><p>1</p></div>
@@ -38,7 +40,8 @@
             <div class="col"><p>5</p></div>
             <div class="col"><p>N/A</p></div>
         </div>
-
+  </slide>
+  </carousel>
 </div>
 </template>
 <script>
@@ -48,8 +51,10 @@ export default {
   data() {
     return {
       answered: {
-        selectedB: null,
-        selectedA: null,
+        // selectedB: null,
+        // selectedA: null,
+        selectedB:[],
+        selectedA:[],
         qid: this.surveys.qid
       },
       activeB: [
@@ -68,14 +73,7 @@ export default {
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn5%20(2).png?alt=media&token=d1d561b2-be7d-46e0-81b9-d64180f7dd84",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fna%20(2).png?alt=media&token=3b5310c2-2cb1-44e2-9822-b697516a0b21"
       ],
-      selectedsB: [
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn1%20(2).png?alt=media&token=2fc120a3-5bd6-48ef-bb2d-2424e7a4229c",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn2%20(2).png?alt=media&token=cfedee23-3cc5-4323-9685-8273ebeb5b46",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn3%20(2).png?alt=media&token=d51dceec-608f-4d0a-82ac-fb10a6ee865c",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn4%20(2).png?alt=media&token=d4dd5ef5-7bcf-460a-8ce3-174fdcdd0a05",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn5%20(2).png?alt=media&token=d1d561b2-be7d-46e0-81b9-d64180f7dd84",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fna%20(2).png?alt=media&token=3b5310c2-2cb1-44e2-9822-b697516a0b21"
-      ],
+      selectedsB: [],
       activeA: [
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn1.png?alt=media&token=01541849-2679-4260-aed5-cf721cb1e132",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn2.png?alt=media&token=54fbfe39-857a-4c1c-a1dd-698965e8b143",
@@ -92,7 +90,11 @@ export default {
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn5%20(2).png?alt=media&token=d1d561b2-be7d-46e0-81b9-d64180f7dd84",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fna%20(2).png?alt=media&token=3b5310c2-2cb1-44e2-9822-b697516a0b21"
       ],
-      selectedsA: [
+      selectedsA: []
+    };
+  },
+  created() {
+      var initselectedB = [
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn1%20(2).png?alt=media&token=2fc120a3-5bd6-48ef-bb2d-2424e7a4229c",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn2%20(2).png?alt=media&token=cfedee23-3cc5-4323-9685-8273ebeb5b46",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn3%20(2).png?alt=media&token=d51dceec-608f-4d0a-82ac-fb10a6ee865c",
@@ -100,33 +102,52 @@ export default {
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn5%20(2).png?alt=media&token=d1d561b2-be7d-46e0-81b9-d64180f7dd84",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fna%20(2).png?alt=media&token=3b5310c2-2cb1-44e2-9822-b697516a0b21"
       ]
-    };
-  },
-  created() {
+    var initselectedA = [
+        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn1%20(2).png?alt=media&token=2fc120a3-5bd6-48ef-bb2d-2424e7a4229c",
+        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn2%20(2).png?alt=media&token=cfedee23-3cc5-4323-9685-8273ebeb5b46",
+        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn3%20(2).png?alt=media&token=d51dceec-608f-4d0a-82ac-fb10a6ee865c",
+        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn4%20(2).png?alt=media&token=d4dd5ef5-7bcf-460a-8ce3-174fdcdd0a05",
+        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn5%20(2).png?alt=media&token=d1d561b2-be7d-46e0-81b9-d64180f7dd84",
+        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fna%20(2).png?alt=media&token=3b5310c2-2cb1-44e2-9822-b697516a0b21"
+      ]
+      for(var i=0;i<=this.surveys.qsub.length;i++){
+      this.selectedsB[i] = initselectedB;
+      this.selectedsA[i] = initselectedA;
+    }
     if (this.defaultans) {
+      
       this.answered = this.defaultans;
       this.clickansBe(this.defaultans.selectedB);
       this.clickansAf(this.defaultans.selectedA);
     }
   },
   methods: {
-    clickansBe(ans) {
-      // this.$emit(ans, yesnoanswer);
-      this.answered.selectedB = ans;
+    clickansBe(index,ans) {
+      this.answered.selectedB[index] = ans;
+      var newB = []
       for (var i = 0; i < this.inactiveB.length; i++) {
-        this.$set(this.selectedsB, i, this.inactiveB[i]);
+        newB[i] = this.inactiveB[i]
       }
+      this.$set(this.selectedsB, index, newB);
+
       var clicknumber = this.activeB[ans - 1];
-      this.$set(this.selectedsB, ans - 1, clicknumber);
+      newB[ans - 1] = clicknumber
+      this.$set(this.selectedsB, index, newB);
+      console.log(clicknumber);
+      
     },
-    clickansAf(ans) {
-      // this.$emit(ans, yesnoanswer);
-      this.answered.selectedA = ans;
+    clickansAf(index,ans) {
+      this.answered.selectedA[index] = ans;
+      var newA = []
       for (var i = 0; i < this.inactiveA.length; i++) {
-        this.$set(this.selectedsA, i, this.inactiveA[i]);
+         newA[i] = this.inactiveA[i]
       }
+      this.$set(this.selectedsA, index, newA);
+
       var clicknumber = this.activeA[ans - 1];
-      this.$set(this.selectedsA, ans - 1, clicknumber);
+       newA[ans - 1] = clicknumber
+      this.$set(this.selectedsA, index, newA);
+      console.log(clicknumber);
     }
   }
 };
@@ -139,12 +160,12 @@ export default {
   box-shadow: 0 0 10px #000000;
 }
 .col {
-  margin-top: 5px;
+  margin-top: 1px;
   text-align: center;
 }
 .h3 {
   color: rgb(85, 53, 4);
-  margin-top: 3vh;
+  margin-top: 1vh;
   text-align: justify;
   text-indent: 45px;
 }

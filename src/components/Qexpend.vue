@@ -3,8 +3,8 @@
     <h2>{{surveys.qid}}. {{surveys.qname}}</h2>
     <hr>
     <div class="row">
-    <div class="col-sm-6" v-for="(ans,index) in surveys.ans" v-bind:key="ans.option">
-        <b-form-checkbox :key="ans.option" :value="ans.option" v-model="answered.selected"><h5>{{ans.option}}</h5>  </b-form-checkbox> 
+    <div class="col-sm-6" v-for="(qsub,index) in surveys.qsub" v-bind:key="qsub.option">
+        <b-form-checkbox :key="qsub.option" :value="qsub.option" v-model="answered.selected"><h5>{{qsub.option}}</h5>  </b-form-checkbox> 
         <b-input-group class="input" size="sm" prepend="$" append="US Dollar or USD">
          <b-form-input type="number" v-model="answered.value[index]" @input="test"></b-form-input>
         </b-input-group>

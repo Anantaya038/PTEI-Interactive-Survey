@@ -2,13 +2,16 @@
 <div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
        <h1>{{surveys.qtitle}}</h1>       
        <hr>
-       <h2>{{surveys.qid}} ) {{surveys.qname}}</h2>   
+      <carousel :per-page="1" :navigate-to="someLocalProperty" mouse-drag="false">
+    <slide v-for="(qsub,index) in surveys.qsub" v-bind:key="(qsub.option,index)">
+<h5>{{surveys.qid}} ) {{qsub.option}}</h5>
+       <hr>
          <div class="row" >
-          <div class="col" v-on:click="clickans('1')"><b-img rounded="circle" :src="selecteds[0]" class="img-body"></b-img></div>
-          <div class="col" v-on:click="clickans('2')"><b-img rounded="circle" :src="selecteds[1]" class="img-body"></b-img></div> 
-          <div class="col" v-on:click="clickans('3')"><b-img rounded="circle" :src="selecteds[2]" class="img-body"></b-img></div>
-          <div class="col" v-on:click="clickans('4')"><b-img rounded="circle" :src="selecteds[3]" class="img-body"></b-img></div> 
-          <div class="col" v-on:click="clickans('5')"><b-img rounded="circle" :src="selecteds[4]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickans(index,1)"><b-img rounded="circle" :src="selecteds[index][0]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickans(index,2)"><b-img rounded="circle" :src="selecteds[index][1]" class="img-body"></b-img></div> 
+          <div class="col" v-on:click="clickans(index,3)"><b-img rounded="circle" :src="selecteds[index][2]" class="img-body"></b-img></div>
+          <div class="col" v-on:click="clickans(index,4)"><b-img rounded="circle" :src="selecteds[index][3]" class="img-body"></b-img></div> 
+          <div class="col" v-on:click="clickans(index,5)"><b-img rounded="circle" :src="selecteds[index][4]" class="img-body"></b-img></div>
         </div>
         <div class="row">
             <div class="col"><h5>Strongly disagree</h5></div>
@@ -17,6 +20,8 @@
             <div class="col"><h5>Agree</h5></div>
             <div class="col"><h5>Strongly agree</h5></div>
         </div>
+        </slide>
+  </carousel>
 </div>
 </template>
 <script>
@@ -27,7 +32,7 @@ export default {
     data (){
       return{   
            answered: {
-               selected: null,
+               selected: [],
                qid: this.surveys.qid
            },   
            active: [
@@ -46,31 +51,41 @@ export default {
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn5%20(2).png?alt=media&token=d1d561b2-be7d-46e0-81b9-d64180f7dd84",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fna%20(2).png?alt=media&token=3b5310c2-2cb1-44e2-9822-b697516a0b21"
       ],
-      selecteds: [
+      selecteds: []   
+      }
+    },
+     created() {
+         var initselected = [
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn1%20(2).png?alt=media&token=2fc120a3-5bd6-48ef-bb2d-2424e7a4229c",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn2%20(2).png?alt=media&token=cfedee23-3cc5-4323-9685-8273ebeb5b46",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn3%20(2).png?alt=media&token=d51dceec-608f-4d0a-82ac-fb10a6ee865c",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn4%20(2).png?alt=media&token=d4dd5ef5-7bcf-460a-8ce3-174fdcdd0a05",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn5%20(2).png?alt=media&token=d1d561b2-be7d-46e0-81b9-d64180f7dd84",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fna%20(2).png?alt=media&token=3b5310c2-2cb1-44e2-9822-b697516a0b21"
-      ]   
-      }
-    },
-     created() {
+      
+         ]
+        for(var i=0;i<=this.surveys.qsub.length;i++){
+        this.selecteds[i] = initselected;
+         }
     if(this.defaultans){
       this.answered = this.defaultans
        this.clickans(this.defaultans.selected);
     }
   },
     methods: {
-        clickans(ans) {
-      // this.$emit(ans, yesnoanswer);
-       this.answered.selected = ans
+        clickans(index,ans) {
+       this.answered.selected[index] = ans
+       var newA = []
        for (var i = 0; i < this.inactive.length; i++) {
-        this.$set(this.selecteds, i, this.inactive[i]);
+           newA[i] = this.inactive[i]
+        
       }
+      this.$set(this.selecteds, index, newA);
+
       var clicknumber = this.active[ans - 1];
-      this.$set(this.selecteds, ans - 1, clicknumber);
+      newA[ans - 1] = clicknumber
+      this.$set(this.selecteds, index, newA);
+      console.log(clicknumber);
     }
     }
 }
