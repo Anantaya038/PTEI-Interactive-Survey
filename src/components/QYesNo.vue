@@ -61,11 +61,8 @@ export default {
     border:6px solid;
     box-shadow: 0 0 50px #000000;
 }
-.form-control{
-    width: 30vw;
-}
 .input{
-    width: 20vw;
+    width: 25vw;
 }
 </style>
 

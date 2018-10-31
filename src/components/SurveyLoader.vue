@@ -99,7 +99,6 @@ export default {
         
     },
     onComplete: function() {
-      alert("Yay. Done!")
       this.$router.push({path:'/finish'})
     }
   },
@@ -122,7 +121,8 @@ export default {
     if (this.$route.params.id == "new") {
       firestore.collection("answers").add({
           datetime: moment().format('MM/DD/YYYY hh:mm:ss'),
-          answered: []
+          answered: [],
+
         })
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);

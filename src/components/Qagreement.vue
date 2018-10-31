@@ -67,9 +67,10 @@ export default {
         for(var i=0;i<=this.surveys.qsub.length;i++){
         this.selecteds[i] = initselected;
          }
-    if(this.defaultans){
-      this.answered = this.defaultans
-       this.clickans(this.defaultans.selected);
+     if (this.defaultans) {
+      for(let i=0; i<= this.surveys.qsub.length;i++){
+      this.clickans(i,this.defaultans.selected[i]);
+    }
     }
   },
     methods: {

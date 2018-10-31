@@ -112,10 +112,10 @@ export default {
       this.selectedsE[i] = initselectedE;
     }
     if (this.defaultans) {
-      this.answered = this.defaultans
-      this.clickansS(this.defaultans.selectedS)
-      this.clickansE(this.defaultans.selectedE)
-      console.log(this.answered)
+      for(let i=0; i<= this.surveys.qsub.length;i++){
+      this.clickansE(i,this.defaultans.selectedE[i]);
+      this.clickansS(i,this.defaultans.selectedS[i]);
+    }
     }
   },
   methods: {

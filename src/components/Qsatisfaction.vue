@@ -51,8 +51,6 @@ export default {
   data() {
     return {
       answered: {
-        // selectedB: null,
-        // selectedA: null,
         selectedB:[],
         selectedA:[],
         qid: this.surveys.qid
@@ -113,12 +111,12 @@ export default {
       for(var i=0;i<=this.surveys.qsub.length;i++){
       this.selectedsB[i] = initselectedB;
       this.selectedsA[i] = initselectedA;
-    }
+      }
     if (this.defaultans) {
-      
-      this.answered = this.defaultans;
-      this.clickansBe(this.defaultans.selectedB);
-      this.clickansAf(this.defaultans.selectedA);
+      for(let i=0; i<= this.surveys.qsub.length;i++){
+      this.clickansBe(i,this.defaultans.selectedB[i]);
+      this.clickansAf(i,this.defaultans.selectedA[i]);
+    }
     }
   },
   methods: {
