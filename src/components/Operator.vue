@@ -28,9 +28,9 @@ export default {
         signUp: function(e){
             firebase.auth().signInWithEmailAndPassword(this.email,this.password)
             .then((response) => {
-                    alert('login success!')
+                    alert('login success! ')
                     console.log(response)
-                    this.$router.push('/survey')
+                    this.$router.push('new')
                 },
                 (err) => {
                     alert(err.message)
