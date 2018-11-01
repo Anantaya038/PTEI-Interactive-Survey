@@ -1,7 +1,7 @@
 <template>
 <div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
 <h4>{{surveys.qtitle}}</h4>
-<carousel :per-page="1" :navigate-to="someLocalProperty" mouse-drag="false">
+<carousel :per-page="1">
     <slide v-for="(qsub,index) in surveys.qsub" v-bind:key="(qsub.option,index)">
 <h5>{{surveys.qid}} ) {{qsub.option}}</h5>
        <hr>

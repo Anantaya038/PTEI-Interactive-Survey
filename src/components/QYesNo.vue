@@ -2,8 +2,8 @@
 <div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
     <h1>{{surveys.qid}}. {{surveys.qname}}</h1>
     <div class="row">
-        <div class="col-6"  v-on:click="clickans('1')"><b-img :class="{ active : active_el == 1 }" rounded="circle" src="https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fyes.png?alt=media&token=5281b997-426a-489e-a4d1-3fe6aeafc02a" class="img-body"></b-img></div>
-        <div class="col-6"  v-on:click="clickans('2')" v-b-modal.myModal><b-img :class="{ active : active_el == 2 }" rounded="circle" src="https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fno.png?alt=media&token=08722d8b-2c91-4528-a649-756622ba18fb" class="img-body"></b-img></div>
+        <div class="col-6"  v-on:click="clickans('1')"><b-img :class="{ active :active_el == 1 }" rounded="circle" src="https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fyes.png?alt=media&token=5281b997-426a-489e-a4d1-3fe6aeafc02a" class="img-body"></b-img></div>
+        <div class="col-6"  v-on:click="clickans('2')" v-b-modal.myModal><b-img :class="{ active :active_el == 2 }" rounded="circle" src="https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fno.png?alt=media&token=08722d8b-2c91-4528-a649-756622ba18fb" class="img-body"></b-img></div>
         
         <div class="col-6" v-if="answered.selected === '2'">    
             <b-modal id="myModal" centered size="sm">
