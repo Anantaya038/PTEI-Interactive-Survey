@@ -29,6 +29,7 @@ export default {
             firebase.auth().signInWithEmailAndPassword(this.email,this.password)
             .then((response) => {
                     alert('login success! ')
+                    window.localStorage.setItem("operatorEmail", this.email)
                     console.log(response)
                     this.$router.push('new')
                 },

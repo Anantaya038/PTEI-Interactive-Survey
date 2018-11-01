@@ -122,7 +122,6 @@ export default {
       firestore.collection("answers").add({
           datetime: moment().format('MM/DD/YYYY hh:mm:ss'),
           answered: [],
-          
         })
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
@@ -150,7 +149,10 @@ export default {
         });
     }
   },
-  create() {}
+  create() {},
+  computed: {
+    operatorEmail: () => window.localStorage.getItem("operatorEmail")
+  }
 };
 </script>
 

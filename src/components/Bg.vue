@@ -22,6 +22,7 @@ export default {
         logout: function() {
             firebase.auth().signOut().then(() => {
                 alert('logout')
+                window.localStorage.removeItem("operatorEmail")
                 this.$router.push('/login')
             });
         }
