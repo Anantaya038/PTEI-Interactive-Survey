@@ -3,7 +3,7 @@
     <h2>{{surveys.qid}}. {{surveys.qname}} </h2>
     <div class="row">
     <div class="col-6" v-for="ans in surveys.ans" v-bind:key="ans.option">
-        <b-form-checkbox v-model="answered.selectedRadio" :key="ans.option" :value="ans.option" :options="options" name="radioSubComponent">
+        <b-form-checkbox v-model="answered.selectedRadio" :key="ans.option" :value="ans.option" name="radioSubComponent">
                 <h4>{{ans.option}}</h4>
         </b-form-checkbox>        
     </div>
