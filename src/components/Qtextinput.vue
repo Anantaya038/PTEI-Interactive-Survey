@@ -23,7 +23,6 @@ export default {
     };
   },
   mounted() {
-    console.log('create:'+this.defaultans);
     if(this.defaultans){
       this.answered = this.defaultans
     }

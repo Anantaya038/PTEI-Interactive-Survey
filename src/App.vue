@@ -11,6 +11,16 @@ export default {
   name: 'app',
   components: {
     MyComponent
+  },
+  beforeMount() {
+    if (this.opertorEmail == null) {
+      this.$router.push({path: '/login'})
+    } else {
+      this.$router.push({path: '/new'})
+    }
+  },
+  computed: {
+    opertorEmail: () => window.localStorage.getItem("operatorEmail")
   }
 }
 </script>

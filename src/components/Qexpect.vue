@@ -106,7 +106,6 @@ export default {
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn4%20(2).png?alt=media&token=d4dd5ef5-7bcf-460a-8ce3-174fdcdd0a05",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn5%20(2).png?alt=media&token=d1d561b2-be7d-46e0-81b9-d64180f7dd84"
       ]
-    console.log('created')
     for(var i=0;i<=this.surveys.qsub.length;i++){
       this.selected[i] = initselected;
       this.selectedsE[i] = initselectedE;

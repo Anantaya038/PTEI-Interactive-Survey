@@ -34,7 +34,7 @@ import Qexpend from "./Qexpend";
 import { firestore } from "../firebase.js";
 import { Circle8 } from "vue-loading-spinner";
 import Qradio from "./Qradio";
-import moment from 'moment';
+import moment from "moment";
 
 export default {
   name: "surveyloader",
@@ -54,17 +54,15 @@ export default {
     return {
       questions: [],
       true: true,
-      answers: [],
+      //answers: [],
       userid: "",
       defaultans: [],
       dataReady: false,
-  
+      ans: []
     };
   },
   methods: {
     onChange(prev, next) {
-      
-      console.log("changed from" + prev + "to" + next);
       var qid = "q" + prev;
       var data = {
         answered: []
@@ -96,49 +94,52 @@ export default {
             .doc(doc.id)
             .set(answereds);
         });
-        
     },
     onComplete: function() {
-      this.$router.push({path:'/finish'})
+      this.$router.push({ path: "/finish" });
     }
   },
   firestore() {
     return {
       // Get all questions and render all at once
       surveys: firestore.collection("surveys").orderBy("qid"),
-      answers: firestore.collection("answers")
+      answers: firestore.collection("answers").orderBy("index", "desc")
     };
   },
   async mounted() {
-    this.questions = await this.surveys;
     this.$refs.modal.show();
-    setTimeout(() => {
-      this.$refs.modal.hide();
-    }, 2400);
-    var parent = this;
-    console.log(this.$route.params.id);
-
+    this.questions = await this.surveys;
+    let ans = await this.$firestore.answers.get();
+    ans.forEach(e => {
+      this.ans.push(e.data());
+    });
+    this.$refs.modal.hide();
+    const newIndex = this.ans[0]["index"] + 1;
     if (this.$route.params.id == "new") {
-      firestore.collection("answers").add({
-          datetime: moment().format('MM/DD/YYYY hh:mm:ss'),
+      firestore
+        .collection("answers")
+        .add({
+          datetime: moment().format("MM/DD/YYYY hh:mm:ss"),
           answered: [],
+          index: newIndex
         })
-        .then(function(docRef) {
-          console.log("Document written with ID: ", docRef.id);
-          parent.userid = docRef.id;
-          parent.dataReady = true;
+        .then(docRef => {
+          this.userid = docRef.id;
+          this.dataReady = true;
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
         });
     } else {
       // get firebase
-      var docRef = this.$firestore.answers.doc(this.$route.params.id)
-      docRef.get().then(function(doc) {
+      var docRef = this.$firestore.answers.doc(this.$route.params.id);
+      docRef
+        .get()
+        .then(doc => {
           if (doc.exists) {
             console.log("Document data:", doc.data());
-            parent.defaultans = doc.data().answered
-            parent.dataReady = true;
+            this.defaultans = doc.data().answered;
+            this.dataReady = true;
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
@@ -152,7 +153,8 @@ export default {
   create() {},
   computed: {
     operatorEmail: () => window.localStorage.getItem("operatorEmail")
-  }
+  },
+  async beforeMount() {}
 };
 </script>
 

@@ -38,8 +38,10 @@ export default {
                 }
             );
             e.preventDefault();
-            
         }
+    },
+    computed: {
+        
     }
 }
 </script>
