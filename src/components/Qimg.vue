@@ -7,7 +7,6 @@
     <b-modal v-if="answered.selected === 'Others (please specify)'" v-model="myModal" centered size="md">
     <b-form-input class="input"  v-model="answered.text" type="text" size="lg" placeholder="Please specify"></b-form-input>
     </b-modal>
-
 </div>
 </template>
 <script>

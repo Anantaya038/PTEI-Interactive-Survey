@@ -9,7 +9,7 @@
     </div>
     <div class="row"></div>
     <!-- <div v-if="answered.selectedChoice.indexOf('Others (please specify)') != -1">   -->
-        <b-modal v-if="answered.selectedChoice === 'Others (please specify)'" v-model="myModal" centered size="md">
+        <b-modal v-if="answered.selectedChoice.indexOf('Others (please specify)')!= -1" v-model="myModal"  centered size="md">
     <b-form-input class="input"  v-model="answered.text" type="text" size="lg" placeholder="Please specify"></b-form-input>
     </b-modal>
     <!-- </div>   -->
@@ -27,8 +27,8 @@ export default {
         text: '',
         selectedChoice:[],
         qid: this.surveys.qid,
-        myModal: false
-        
+        myModal: false,
+        indexOf: ''
       },
     };
   },
@@ -39,7 +39,7 @@ export default {
     }
   },
   methods:{
-   
+       
   }
 };
 </script>

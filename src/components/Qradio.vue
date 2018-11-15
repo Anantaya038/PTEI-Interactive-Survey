@@ -13,7 +13,7 @@
             <b-form-input v-model="answered.text" id="input-large" size="lg" type="text" placeholder="Enter your answer"></b-form-input>
         </b-col>
     </div>   -->
-    <b-modal v-if="answered.selectedRadio === 'Others (please specify)'" v-model="myModal" centered size="md">
+    <b-modal v-if="answered.selectedRadio.indexOf('Others (please specify)') != -1" v-model="myModal" centered size="md">
     <b-form-input class="input"  v-model="answered.text" type="text" size="lg" placeholder="Please specify"></b-form-input>
     </b-modal>
     </div>  
