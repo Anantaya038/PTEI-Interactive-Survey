@@ -5,7 +5,7 @@
                     <b-img :src="require('../photo/page1.png')" class="img-body"></b-img>
                 </div>
                 <h1><strong>Manage Responses</strong></h1>
-           <b-form-input class="input" type="text" v-model="email" placeholder="Enter E-mail"></b-form-input>
+           <b-form-input class="input" type="email" v-model="email" placeholder="Enter E-mail"></b-form-input>
                 <b-form-input class="input" type="password" v-model="password" placeholder="Enter Password"></b-form-input>
             <!-- <router-link to="/new"> -->
             <b-button class="btn" v-on:click="signUp"><h3>Enter</h3></b-button>
