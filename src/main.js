@@ -8,7 +8,8 @@ import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import VueCarousel from 'vue-carousel';
 import VueSweetalert2 from 'vue-sweetalert2';
- 
+import './registerServiceWorker'
+
 Vue.use(VueSweetalert2);
 Vue.use(VueCarousel);
 Vue.use(VueFormWizard)

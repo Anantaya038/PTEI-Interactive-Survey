@@ -27,7 +27,7 @@ export default {
   firestore() {
     return {
       // Get all questions and render all at once
-      answers: firestore.collection("answers")
+      answers: firestore.collection("answers").orderBy("index", "desc")
     };
   },
   async mounted() {

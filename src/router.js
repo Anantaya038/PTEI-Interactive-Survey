@@ -22,6 +22,7 @@ import SurveyFinish from './components/SurveyFinish'
 Vue.use(Router)
 
 const routes = [
+
     { path: '/home', component: HelloWorld },
     { path: '/firebase', component: Firestore },
     { path: '/survey', component: Survey },
