@@ -54,7 +54,7 @@ export default {
 }
 .fullscreen {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-color: rgb(255, 255, 255);
 }
 .bgcolor {

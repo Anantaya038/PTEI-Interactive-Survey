@@ -1,9 +1,9 @@
 <template>
-    <div class="container" style="margin: auto; margin-top: 10vh">
-       <p>NEXT</p><p>{{index}}</p> 
-        <div style="margin: auto; margin-top: 10vh">
+    <div class="container" style="margin: auto; margin-top: 5vh">
+       <p>NEXT</p><b>{{index}}</b> 
+        <div style="margin: auto; margin-top: 5vh">
             <router-link to="/loader/new">
-                <b-button><h1>Start new questionnair</h1></b-button>
+                <b-button><h1>Start new questionnaire</h1></b-button>
             </router-link>            
         </div>
         <div class="marginTop">  
@@ -47,7 +47,7 @@ export default {
   text-align: center;
 }
 .marginTop {
-  margin-top: 7vh;
+  margin-top: 5vh;
 }
 .btn{
   border-radius: 10px;
@@ -69,9 +69,14 @@ export default {
 }
 h1{
   color: rgb(255, 255, 255);
+  font-weight: bold;
 }
 p{
   font-size: 5vh;
+  font-weight: bold;
+}
+b{
+  font-size: 10vh;
   font-weight: bold;
 }
 </style>

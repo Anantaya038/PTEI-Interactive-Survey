@@ -1,7 +1,6 @@
 <template>
-<div style="margin: 0% 3% 0% 3%; min-height: 72vh; max-height: 65vh;">
+<div style="margin: 0% 3% 0% 3%; min-height: 68vh; max-height: 65vh;">
        <p>{{surveys.qtitle}}</p>       
-       <hr>
       <carousel :per-page="1">
     <slide v-for="(qsub,index) in surveys.qsub" v-bind:key="(qsub.option,index)">
 <b-card bg-variant="secondary"><h2>{{surveys.qid}} ) {{qsub.option}}</h2></b-card>

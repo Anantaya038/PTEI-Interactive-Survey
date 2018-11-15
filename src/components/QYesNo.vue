@@ -1,5 +1,5 @@
 <template>
-<div style="margin: 3% 3% 0% 3%; min-height: 68vh; max-height: 65vh;">
+<div style="margin: 0% 3% 0% 3%; min-height: 68vh; max-height: 65vh;">
     <b-card bg-variant="secondary"><h1>{{surveys.qid}}. {{surveys.qname}}</h1></b-card>
     
     <div class="row">

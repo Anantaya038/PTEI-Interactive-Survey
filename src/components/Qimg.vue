@@ -1,5 +1,5 @@
 <template>
-<div style="margin: 0% 3% 0% 3%; min-height: 72vh; max-height: 65vh;">
+<div style="margin: 0% 3% 0% 3%; min-height: 68vh; max-height: 65vh;">
   <b-card bg-variant="secondary"><h1>{{surveys.qid}}. {{surveys.qname}}</h1></b-card>
     <div class="row">
       <div class="col-4" v-for="ans in surveys.ans" v-on:click="clickans(ans.option)" v-bind:key="ans.option"><b-img :class="{ active : active_el == ans.option }" rounded :src="ans.url" class="img-body"></b-img><h6>{{ans.option}}</h6></div>       

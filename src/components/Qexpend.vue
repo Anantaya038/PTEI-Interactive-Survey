@@ -1,5 +1,5 @@
 <template>
-<div style="margin: 0% 3% 0% 3%; min-height: 72vh; max-height: 65vh;">
+<div style="margin: 0% 3% 0% 3%; min-height: 68vh; max-height: 65vh;">
     <b-card bg-variant="secondary"><h2>{{surveys.qid}}. {{surveys.qname}}</h2></b-card>
     <div class="row">
     <div class="col-sm-6" v-for="(qsub,index) in surveys.qsub" v-bind:key="qsub.option">
@@ -45,7 +45,7 @@ export default {
     width: 30vw;
 }
 .col-sm-6{
-    margin-top: 1vh;
+    margin-top: 0vh;
 }
 p{
   color: black;

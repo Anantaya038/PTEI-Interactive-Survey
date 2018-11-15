@@ -1,9 +1,9 @@
 <template>
-<div style="margin: 0% 3% 0% 3%; min-height: 72vh; max-height: 65vh;">
+<div style="margin: 0% 3% 0% 3%; min-height: 68vh; max-height: 65vh;">
 <h6>{{surveys.qtitle}}</h6>
 <carousel :per-page="1">
     <slide v-for="(qsub,index) in surveys.qsub" v-bind:key="(qsub.option,index)">
-<b-card bg-variant="secondary"><h2>{{surveys.qid}} ) {{qsub.option}}</h2></b-card>
+<b-card bg-variant="secondary"><h3>{{surveys.qid}} ) {{qsub.option}}</h3></b-card>
        <h5>Level of importance ...</h5>
         <div class="row" >
           <div class="col" v-on:click="clickansE(index,1)"><b-img rounded="circle" :src="selectedsE[index][0]" class="img-body"></b-img></div>
@@ -155,13 +155,14 @@ export default {
   box-shadow: 0 0 10px #000000;
 }
 .col {
-  margin-top: 1vh;
   text-align: center;
 }
 h5 {
   color: rgb(85, 53, 4);
-  margin-top: 1vh;
   text-align: justify;
   text-indent: 45px;
+}
+h3{
+  color: white;
 }
 </style>
