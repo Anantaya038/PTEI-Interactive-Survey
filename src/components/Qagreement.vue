@@ -1,10 +1,10 @@
 <template>
-<div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
-       <h1>{{surveys.qtitle}}</h1>       
+<div style="margin: 0% 3% 0% 3%; min-height: 72vh; max-height: 65vh;">
+       <p>{{surveys.qtitle}}</p>       
        <hr>
       <carousel :per-page="1">
     <slide v-for="(qsub,index) in surveys.qsub" v-bind:key="(qsub.option,index)">
-<h5>{{surveys.qid}} ) {{qsub.option}}</h5>
+<b-card bg-variant="secondary"><h2>{{surveys.qid}} ) {{qsub.option}}</h2></b-card>
        <hr>
          <div class="row" >
           <div class="col" v-on:click="clickans(index,1)"><b-img rounded="circle" :src="selecteds[index][0]" class="img-body"></b-img></div>
@@ -106,14 +106,11 @@ export default {
     margin-top:1vh;
     
 }
-h2{
-    margin-top:3vh;
-    text-align: justify;
-    text-indent: 45px;
-    color: #977400
-}
 .hr{
     border-top: 10px solid rgba(0, 0, 0, 0.1);
     size: 6;
+}
+p{
+    font-size: 2.5vw;
 }
 </style>

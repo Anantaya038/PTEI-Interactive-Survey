@@ -1,11 +1,10 @@
 <template>
-    <div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
-        <h2>{{surveys.qid}}. {{surveys.qname}}</h2>
+    <div style="margin: 3% 3% 0% 3%; min-height: 68vh; max-height: 65vh;">
+        <b-card bg-variant="secondary"><h1>{{surveys.qid}}. {{surveys.qname}}</h1></b-card>
         <div class="row">  
-            <h2>Answer :</h2>
-            <!-- <b-form-input v-bind:value.sync="answer" v-model="answer" @change="edit(answer)" @input="$emit('update:answer', $event.target.value)" id="input-large" size="lg" type="text" placeholder="Enter your answer"></b-form-input> -->
+            <p>Answer :</p>
             <b-col sm="8">
-                <b-form-input v-model="answered.text"  id="input-large" size="lg" type="text" placeholder="Enter your answer"></b-form-input>
+                <b-form-input v-model="answered.text" id="input-small" size="lg" type="text" placeholder="Enter your answer"></b-form-input>
             </b-col>
         </div>
     </div>
@@ -33,5 +32,17 @@ export default {
 <style scoped>
 .row {
   margin-top: 8vh;
+  text-align: center;
+}
+h1{
+  color: rgb(255, 255, 255);
+}
+p{
+  font-size: 4vh;
+  font-weight: bold;
+}
+.form-control{
+  font-weight: bold;
+  font-size: 3vh;
 }
 </style>

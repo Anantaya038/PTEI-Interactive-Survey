@@ -54,7 +54,7 @@ export default {
     return {
       questions: [],
       true: true,
-      //answers: [],
+      answers: [],
       userid: "",
       defaultans: [],
       dataReady: false,
@@ -62,7 +62,7 @@ export default {
     };
   },
   methods: {
-    onChange(prev, next) {
+    onChange(prev) {
       var qid = "q" + prev;
       var data = {
         answered: []
@@ -121,7 +121,8 @@ export default {
         .add({
           datetime: moment().format("MM/DD/YYYY hh:mm:ss"),
           answered: [],
-          index: newIndex
+          index: newIndex,
+          operator: this.operatorEmail
         })
         .then(docRef => {
           this.userid = docRef.id;
@@ -132,10 +133,11 @@ export default {
         });
     } else {
       // get firebase
-      var docRef = this.$firestore.answers.doc(this.$route.params.id);
-      docRef
-        .get()
-        .then(doc => {
+      console.log(this.$route.params.id);
+      console.log(this.$firestore.answers);
+      
+      var docRef = firestore.collection("answers").doc(this.$route.params.id);
+      docRef.get().then(doc => {
           if (doc.exists) {
             console.log("Document data:", doc.data());
             this.defaultans = doc.data().answered;
@@ -162,5 +164,18 @@ export default {
 .hhhh {
   max-height: 0px;
   padding: 0px;
+}
+.vue-form-wizard .wizard-header{
+  display: NONE;
+}
+.wizard-navigation .wizard-progress-with-circle{
+  display: NONE;
+}
+.vue-form-wizard.xs .wizard-icon-circle{
+  display: NONE;
+}
+.vue-form-wizard .wizard-btn{
+  height: 8vh;
+  width: 15vw;
 }
 </style>

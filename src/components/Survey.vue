@@ -1,6 +1,5 @@
 <template>
-   
-        <div class="container" style="margin: auto; margin-top: 25vh">
+        <div class="container" style="margin: auto; margin-top: 25vh;background-color: #193C6C;">
             <router-link to="/new">
             <div class="img">
                 <b-img :src="require('../photo/page1.png')"></b-img>
@@ -13,8 +12,6 @@
             <pulse-loader></pulse-loader>
         </b-modal>
         </div>
-    
-  
 </template>
 <script>
   import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
@@ -27,14 +24,14 @@ async mounted() {
     setTimeout(() => {
       this.$refs.modal.hide();
       this.$router.push({path:'/login'})
-    }, 3000);
+    }, 2500);
      
 },
 }
 </script>
 <style>
 .container{
-      text-align: center;
+    text-align: center;
 }
 .name{
     margin-top: 10vh;

@@ -28,7 +28,6 @@ export default {
         signUp: function(e){
             firebase.auth().signInWithEmailAndPassword(this.email,this.password)
             .then((response) => {
-                    alert('login success! ')
                     window.localStorage.setItem("operatorEmail", this.email)
                     console.log(response)
                     this.$router.push('new')
@@ -46,7 +45,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .card-body{
         border-radius: 20%;
     }
@@ -56,21 +55,25 @@ export default {
     .btn{
         margin-top: 2vh;
         color: black;
-        width: 30vw;
+        width: 40vw;
         height: 7vh;
-        background: rgb(41,185,84);
-        background: linear-gradient(10deg, rgba(41,185,84,1) 0%, rgba(4,199,153,1) 100%);
+        background: rgb(255, 255, 255);
+        background: linear-gradient(10deg, #193C6C, rgb(148, 156, 154) 100%);
+        border:1px solid #193C6C;
     }
     .input{
-
-        width: 30vw;
+        width: 40vw;
         height: 7vh;
         margin: auto;
         margin-top: 1vh;
         font-size: 3vh;
     }
-    .text-center{
-        background: rgb(20,167,132);
-        background: radial-gradient(circle, rgba(20,167,132,1) 0%, rgb(99, 97, 97) 100%);
+    .input::placeholder{
+        font-weight: bold;
     }
+    .text-center{
+        background: rgb(113, 150, 141);
+        background: radial-gradient(circle, rgb(41, 117, 131) 0%, rgb(219, 219, 219) 100%);
+    }
+
 </style>

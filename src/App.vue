@@ -14,7 +14,7 @@ export default {
   },
   beforeMount() {
     if (this.opertorEmail == null) {
-      this.$router.push({path: '/login'})
+      this.$router.push({path: '/survey'})
     } else {
       this.$router.push({path: '/new'})
     }
@@ -26,11 +26,10 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Rubik');
+@import url('https://fonts.googleapis.com/css?family=Lato');
 #app {
- font-family: 'Rubik', sans-serif;
+ font-family: 'Lato', sans-serif;
   color: #000000;
-  background-color: #00CC99;
- 
+  background-color: #193C6C;
 }
 </style>

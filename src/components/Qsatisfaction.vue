@@ -1,10 +1,9 @@
 <template>
-<div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
-<h4>{{surveys.qtitle}}</h4>
+<div style="margin: 0% 3% 0% 3%; min-height: 72vh; max-height: 65vh;">
+<h5>{{surveys.qtitle}}</h5>
 <carousel :per-page="1">
     <slide v-for="(qsub,index) in surveys.qsub" v-bind:key="(qsub.option,index)">
-<h5>{{surveys.qid}} ) {{qsub.option}}</h5>
-       <hr>
+<b-card bg-variant="secondary"><h2>{{surveys.qid}} ) {{qsub.option}}</h2></b-card>
        <h5>{{ surveys.titleBe }}</h5>
         <div class="row" >
           <div class="col" v-on:click="clickansBe(index,1)"><b-img rounded="circle" :src="selectedsB[index][0]" class="img-body"></b-img></div>
@@ -15,14 +14,13 @@
           <div class="col" v-on:click="clickansBe(index,6)"><b-img rounded="circle" :src="selectedsB[index][5]" class="img-body"></b-img></div>
         </div>
         <div class="row">
-            <div class="col"><p>1</p></div>
-            <div class="col"><p>2</p></div>
-            <div class="col"><p>3</p></div>
-            <div class="col"><p>4</p></div>
-            <div class="col"><p>5</p></div>
-            <div class="col"><p>N/A</p></div>
+            <div class="col"><h6>1</h6></div>
+            <div class="col"><h6>2</h6></div>
+            <div class="col"><h6>3</h6></div>
+            <div class="col"><h6>4</h6></div>
+            <div class="col"><h6>5</h6></div>
+            <div class="col"><h6>N/A</h6></div>
         </div>
-        <hr>
         <h5>{{ surveys.titleAf }}</h5>
        <div class="row" >
           <div class="col" v-on:click="clickansAf(index,1)"><b-img  rounded="circle" :src="selectedsA[index][0]" class="img-body"></b-img></div>
@@ -33,12 +31,12 @@
           <div class="col" v-on:click="clickansAf(index,6)"><b-img  rounded="circle" :src="selectedsA[index][5]" class="img-body"></b-img></div>
         </div>
         <div class="row">
-            <div class="col"><p>1</p></div>
-            <div class="col"><p>2</p></div>
-            <div class="col"><p>3</p></div>
-            <div class="col"><p>4</p></div>
-            <div class="col"><p>5</p></div>
-            <div class="col"><p>N/A</p></div>
+           <div class="col"><h6>1</h6></div>
+            <div class="col"><h6>2</h6></div>
+            <div class="col"><h6>3</h6></div>
+            <div class="col"><h6>4</h6></div>
+            <div class="col"><h6>5</h6></div>
+            <div class="col"><h6>N/A</h6></div>
         </div>
   </slide>
   </carousel>
@@ -161,14 +159,10 @@ export default {
   margin-top: 1px;
   text-align: center;
 }
-.h3 {
+h5 {
   color: rgb(85, 53, 4);
   margin-top: 1vh;
   text-align: justify;
   text-indent: 45px;
-}
-.hr {
-  border-top: 10px solid rgba(0, 0, 0, 0.1);
-  size: 6;
 }
 </style>

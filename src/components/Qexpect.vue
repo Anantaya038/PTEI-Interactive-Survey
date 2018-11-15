@@ -1,10 +1,10 @@
 <template>
-<div style="margin: 0% 2% 0% 2%; min-height: 68vh; max-height: 65vh;">
-{{surveys.qtitle}}
+<div style="margin: 0% 3% 0% 3%; min-height: 72vh; max-height: 65vh;">
+<h6>{{surveys.qtitle}}</h6>
 <carousel :per-page="1">
     <slide v-for="(qsub,index) in surveys.qsub" v-bind:key="(qsub.option,index)">
-<h5>{{surveys.qid}} ) {{qsub.option}}</h5>
-       <h6>Level of importance ...</h6>
+<b-card bg-variant="secondary"><h2>{{surveys.qid}} ) {{qsub.option}}</h2></b-card>
+       <h5>Level of importance ...</h5>
         <div class="row" >
           <div class="col" v-on:click="clickansE(index,1)"><b-img rounded="circle" :src="selectedsE[index][0]" class="img-body"></b-img></div>
           <div class="col" v-on:click="clickansE(index,2)"><b-img rounded="circle" :src="selectedsE[index][1]" class="img-body"></b-img></div> 
@@ -13,13 +13,13 @@
           <div class="col" v-on:click="clickansE(index,5)"><b-img rounded="circle" :src="selectedsE[index][4]" class="img-body"></b-img></div>
         </div>
         <div class="row">
-            <div class="col"><p>Not important</p></div>
-            <div class="col"><p>Of little importance</p></div>
-            <div class="col"><p>Of average importance</p></div>
-            <div class="col"><p>Very Important</p></div>
-            <div class="col"><p>Absolutely essential</p></div>
+            <div class="col"><h6>Not important</h6></div>
+            <div class="col"><h6>Of little importance</h6></div>
+            <div class="col"><h6>Of average importance</h6></div>
+            <div class="col"><h6>Very Important</h6></div>
+            <div class="col"><h6>Absolutely essential</h6></div>
         </div>
-        <h6> Your satisfaction of Phuket... </h6>
+        <h5> Your satisfaction of Phuket... </h5>
         <div class="row">
           <div class="col" v-on:click="clickansS(index,1)"><b-img rounded="circle" :src="selected[index][0]" class="img-body"></b-img></div>
           <div class="col" v-on:click="clickansS(index,2)"><b-img rounded="circle" :src="selected[index][1]" class="img-body"></b-img></div> 
@@ -29,12 +29,12 @@
           <div class="col" v-on:click="clickansS(index,6)"><b-img rounded="circle" :src="selected[index][5]" class="img-body"></b-img></div>
         </div>
         <div class="row">
-            <div class="col"><p>Very dissatisfied</p></div>
-            <div class="col"><p>Slightly dissatisfied</p></div>
-            <div class="col"><p>Neutral</p></div>
-            <div class="col"><p>Moderately satisfied</p></div>
-            <div class="col"><p>Very satisfied</p></div>
-            <div class="col"><p>N/A</p></div>
+            <div class="col"><h6>Very dissatisfied</h6></div>
+            <div class="col"><h6>Slightly dissatisfied</h6></div>
+            <div class="col"><h6>Neutral</h6></div>
+            <div class="col"><h6>Moderately satisfied</h6></div>
+            <div class="col"><h6>Very satisfied</h6></div>
+            <div class="col"><h6>N/A</h6></div>
         </div>
 
     
@@ -51,10 +51,9 @@ export default {
   data() {
     return {
       answered: {
-
         selectedE: [],
         selectedS: [],
-        qid : this.surveys.qid
+        qid: this.surveys.qid
       },
       active: [
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs1.png?alt=media&token=1d0c8c03-afff-42e5-9755-4e64bcb9bc9e",
@@ -70,7 +69,7 @@ export default {
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs3%20(2).png?alt=media&token=10486b1f-aeee-4342-b163-0746eaa9eab0",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs4%20(2).png?alt=media&token=639a9fd5-bc92-41e8-84f7-8fd51cdb55e7",
         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs5%20(2).png?alt=media&token=142373a1-5d1c-4667-97da-414275fc66ba",
-         "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fna%20(2).png?alt=media&token=3b5310c2-2cb1-44e2-9822-b697516a0b21"
+        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fna%20(2).png?alt=media&token=3b5310c2-2cb1-44e2-9822-b697516a0b21"
       ],
       selected: [],
       activeE: [
@@ -92,58 +91,58 @@ export default {
   },
   created() {
     var initselected = [
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs1%20(2).png?alt=media&token=c50390a1-5e61-4088-bede-7681913e5fa1",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs2%20(2).png?alt=media&token=8e93c90c-654e-4d37-bc31-5289438e7a13",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs3%20(2).png?alt=media&token=10486b1f-aeee-4342-b163-0746eaa9eab0",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs4%20(2).png?alt=media&token=639a9fd5-bc92-41e8-84f7-8fd51cdb55e7",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs5%20(2).png?alt=media&token=142373a1-5d1c-4667-97da-414275fc66ba",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fna%20(2).png?alt=media&token=3b5310c2-2cb1-44e2-9822-b697516a0b21"
-      ]
+      "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs1%20(2).png?alt=media&token=c50390a1-5e61-4088-bede-7681913e5fa1",
+      "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs2%20(2).png?alt=media&token=8e93c90c-654e-4d37-bc31-5289438e7a13",
+      "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs3%20(2).png?alt=media&token=10486b1f-aeee-4342-b163-0746eaa9eab0",
+      "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs4%20(2).png?alt=media&token=639a9fd5-bc92-41e8-84f7-8fd51cdb55e7",
+      "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fs5%20(2).png?alt=media&token=142373a1-5d1c-4667-97da-414275fc66ba",
+      "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fna%20(2).png?alt=media&token=3b5310c2-2cb1-44e2-9822-b697516a0b21"
+    ];
     var initselectedE = [
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn1%20(2).png?alt=media&token=2fc120a3-5bd6-48ef-bb2d-2424e7a4229c",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn2%20(2).png?alt=media&token=cfedee23-3cc5-4323-9685-8273ebeb5b46",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn3%20(2).png?alt=media&token=d51dceec-608f-4d0a-82ac-fb10a6ee865c",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn4%20(2).png?alt=media&token=d4dd5ef5-7bcf-460a-8ce3-174fdcdd0a05",
-        "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn5%20(2).png?alt=media&token=d1d561b2-be7d-46e0-81b9-d64180f7dd84"
-      ]
-    for(var i=0;i<=this.surveys.qsub.length;i++){
+      "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn1%20(2).png?alt=media&token=2fc120a3-5bd6-48ef-bb2d-2424e7a4229c",
+      "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn2%20(2).png?alt=media&token=cfedee23-3cc5-4323-9685-8273ebeb5b46",
+      "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn3%20(2).png?alt=media&token=d51dceec-608f-4d0a-82ac-fb10a6ee865c",
+      "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn4%20(2).png?alt=media&token=d4dd5ef5-7bcf-460a-8ce3-174fdcdd0a05",
+      "https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fn5%20(2).png?alt=media&token=d1d561b2-be7d-46e0-81b9-d64180f7dd84"
+    ];
+    for (var i = 0; i <= this.surveys.qsub.length; i++) {
       this.selected[i] = initselected;
       this.selectedsE[i] = initselectedE;
     }
     if (this.defaultans) {
-      for(let i=0; i<= this.surveys.qsub.length;i++){
-      this.clickansE(i,this.defaultans.selectedE[i]);
-      this.clickansS(i,this.defaultans.selectedS[i]);
-    }
+      for (let i = 0; i <= this.surveys.qsub.length; i++) {
+        this.clickansE(i, this.defaultans.selectedE[i]);
+        this.clickansS(i, this.defaultans.selectedS[i]);
+      }
     }
   },
   methods: {
-    clickansE(index,ans) {
-      this.answered.selectedE[index] = ans
+    clickansE(index, ans) {
+      this.answered.selectedE[index] = ans;
       var newE = [];
       for (var i = 0; i < this.inactiveE.length; i++) {
-        newE[i] = this.inactiveE[i]
+        newE[i] = this.inactiveE[i];
       }
-      this.$set(this.selectedsE, index, newE)
+      this.$set(this.selectedsE, index, newE);
 
-      var clicknumber = this.activeE[ans - 1]
-      newE[ans - 1] = clicknumber
-      this.$set(this.selectedsE, index, newE)
-      console.log(clicknumber)
+      var clicknumber = this.activeE[ans - 1];
+      newE[ans - 1] = clicknumber;
+      this.$set(this.selectedsE, index, newE);
+      console.log(clicknumber);
     },
-    clickansS(index,ans) {
-      this.answered.selectedS[index] = ans
+    clickansS(index, ans) {
+      this.answered.selectedS[index] = ans;
       var newS = [];
       for (var i = 0; i < this.inactive.length; i++) {
-        newS[i] = this.inactive[i]
+        newS[i] = this.inactive[i];
       }
-      this.$set(this.selected, index, newS)
+      this.$set(this.selected, index, newS);
 
-      var clicknumber = this.active[ans - 1]
-      newS[ans - 1] = clicknumber
-      this.$set(this.selected, index, newS)
+      var clicknumber = this.active[ans - 1];
+      newS[ans - 1] = clicknumber;
+      this.$set(this.selected, index, newS);
 
-      console.log(clicknumber)
+      console.log(clicknumber);
     }
   }
 };

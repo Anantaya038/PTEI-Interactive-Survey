@@ -1,14 +1,26 @@
 <template>
-    <div class="row">
-     <div class="col-4" v-for="answer in answers" v-bind:key="answer.answers">
-        <b-button class="ans" v-on:click="send(answer['.key'])"><h3>Response {{ answer['index'] }}</h3></b-button>
-        <b-img class="delete" @click="deleteans(answer['.key'])" v-b-modal.myModal src="https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fdelete.png?alt=media&token=3740d8f6-080b-4508-881d-ecba80e14c47" fluid alt="Responsive image" />
-    </div>
-    <!-- <b-modal id="myModal" centered size="sm">
-        <h2>Confirm Delete?</h2>
-    </b-modal> -->
+   <div class="pre">
+       <table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col"><h3>Operator</h3></th>
+      <th scope="col"><h3>Time</h3> </th>
+      <th scope="col"><h3>Edit</h3></th>
+      <th scope="col"><h3>Delete</h3></th>
+    </tr>
+  </thead> 
+  <tbody>
+    <tr  v-for="(answer,index) in answers" v-bind:key="answer.answers">
+          <th><h4>{{answers[index].operator}}</h4></th> 
+          <th><h4>{{answers[index].datetime}}</h4></th>
+        <th><b-button class="ans" v-on:click="send(answer['.key'])"><h4>Response {{ answer['index'] }}</h4></b-button></th>
+        <th><b-img class="delete" @click="deleteans(answer['.key'])" v-b-modal.myModal src="https://firebasestorage.googleapis.com/v0/b/ptei-1c8c4.appspot.com/o/photo%2Fdelete.png?alt=media&token=3740d8f6-080b-4508-881d-ecba80e14c47" fluid alt="Responsive image"/></th>
+       </tr>
+       </tbody>
+       </table>
 
-    </div>
+ 
+</div>
 </template>
 
 <script>
@@ -28,6 +40,9 @@ export default {
     };
   },
   methods: {
+    backNew(){
+      this.$router.push({ path: "/new"});
+    },
     send(id) {
       this.$router.push({ path: "/loader/" + id });
     },
@@ -68,18 +83,22 @@ export default {
   padding: 0px;
 }
 .delete {
-  margin-top: -16vh;
-  margin-left: 25vw;
-  width: 7vh;
-  height: 7vh;
+  height: 6vh;
+  text-align: center;
 }
 .ans {
-  margin-top: 5vh;
-  height: 7vh;
-  width: 20vw;
-}
-.col-4 {
+  height: 6vh;
+  width: 16vw;
   text-align: center;
+}
+h3,h4,th{
+  text-align: center;
+}
+.pre{
+margin-top: 2vh;
+margin-left: 2vw;
+margin-right: 2vw;
+margin-block-end: 2vh;
 }
 </style>
 
