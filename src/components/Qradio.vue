@@ -7,15 +7,13 @@
                 <p>{{ans.option}}</p>
         </b-form-checkbox>        
     </div>
-    <div class="row"></div>
-    <!-- <div v-if="answered.selectedRadio.indexOf('Others (please specify)') != -1">  
-        <b-col sm="10">
+    <div class="col-6"></div>
+    <div class="col-6" v-if="answered.selectedRadio.indexOf('Others (please specify)') != -1">  
             <b-form-input v-model="answered.text" id="input-large" size="lg" type="text" placeholder="Enter your answer"></b-form-input>
-        </b-col>
-    </div>   -->
-    <b-modal v-if="answered.selectedRadio.indexOf('Others (please specify)') != -1" v-model="myModal" centered size="md">
+    </div>  
+    <!-- <b-modal v-if="answered.selectedRadio.indexOf('Others (please specify)') != -1" v-model="myModal" centered size="md">
     <b-form-input class="input"  v-model="answered.text" type="text" size="lg" placeholder="Please specify"></b-form-input>
-    </b-modal>
+    </b-modal> -->
     </div>  
 </div>
 </template>

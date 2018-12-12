@@ -7,12 +7,12 @@
                 <p>{{ans.option}}</p>
         </b-form-checkbox>        
     </div>
-    <div class="row"></div>
-    <!-- <div v-if="answered.selectedChoice.indexOf('Others (please specify)') != -1">   -->
-        <b-modal v-if="answered.selectedChoice.indexOf('Others (please specify)')!= -1" v-model="myModal"  centered size="md">
+    <div class="col-6"></div>
+    <div class="col-6" v-if="answered.selectedChoice.indexOf('Others (please specify)') != -1">  
+        <!-- <b-modal v-if="answered.selectedChoice.indexOf('Others (please specify)')!= -1" v-model="myModal"  centered size="md"> -->
     <b-form-input class="input"  v-model="answered.text" type="text" size="lg" placeholder="Please specify"></b-form-input>
-    </b-modal>
-    <!-- </div>   -->
+    <!-- </b-modal> -->
+    </div>  
     </div>  
 </div>
 
