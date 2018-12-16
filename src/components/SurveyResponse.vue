@@ -5,7 +5,7 @@
     <tr>
       <th scope="col"><h3>Operator</h3></th>
       <th scope="col"><h3>Time</h3> </th>
-      <th scope="col"><h3>Edit</h3></th>
+      <th scope="col"><h3>View</h3></th>
       <th scope="col"><h3>Delete</h3></th>
     </tr>
   </thead> 
